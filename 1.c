@@ -26,11 +26,11 @@ int Sign(int a) {
 }
 
 int INext(int i, int j, int k, int l) {
-    return (abs(Max(i*(k+5),j*(k+6)))-abs(Min(j*(k+7),l*(k+8)))) % 20;
+    return (abs (Max (i*(k+5),j*(k+6)))-abs (Min (j*(k+7),l*(k+8)))) % 20;
 }
 
 int JNext(int i, int j, int k, int l) {
-    return ((3-Sign(i-j))*abs(Min(Min(i*j+5,i*j-3),i*j+6))) % 25 - 7;
+    return ((3-Sign (i-j))*abs (Min (Min (i*j+5,i*j-3),i*j+6))) % 25 - 7;
 }
 
 int LNext(int i, int j, int l) {
