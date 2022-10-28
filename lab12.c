@@ -1,22 +1,19 @@
 #include <stdio.h>
 
-int main(void)
-{
-    int number,res = 0,rp,p=0;
-    int i=0;
-    int tarr[15] = {0};
-
+int main(void) {
+    int number,res = 0,rp,p = 0,i = 0;
+    int tarr[100] = {0};
     scanf("%d", &number);
     p = getchar();
     while (p != '\n') {
-      if (p > 57 || p < 48) {
+      if (p > '9' || p < '0') {
         return 0;
       }
       rp = p-48;
       number = number*10+rp+(rp%2 == 0);
       p = getchar();
     }
-    while(number!=0)
+    while(number != 0)
     {
         if (number%2 == 0) number++;
         tarr[i] = (number)%10;
