@@ -39,7 +39,7 @@ int PrevMain(){
     int i = 11;
     int j = 13;
     int l = 10;
-    for(int k = 1; k < 500; ++k){
+    for(int k = 1; k < 50; ++k){
         int x = i;
         int y = j;
         int z = l;
