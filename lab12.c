@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(void) {
-    int number,res = 0,rp,p = 0,i = 0;
+    int number, res = 0, rp, p = 0, i = 0;
     int tarr[100] = {0};
     scanf("%d", &number);
     p = getchar();

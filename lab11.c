@@ -42,7 +42,7 @@ int main() {
     if (p > 57 || p < 48) {
       return 0;
     }
-    y = y*10+(p-48);
+    y = y*10+(p-48); 
     p = getchar();
   }
   x = DecimalToOctal(x);
