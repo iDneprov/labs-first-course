@@ -1,19 +1,16 @@
 #include <stdio.h>
-/*
-48 - 57 - цифры
-32 - space
-*/
+
 void main() {
     char current = 0;
     char buff_1 = 0;
     int flag = 0;
+    
     while (1) {
         current = getchar();
-
+        
         if (current == EOF) {
             break;
-        }
-        else {
+        } else {
             if (('0' <= current) && (current <= '9')) {
                 if (flag == 0) {
                     flag = 1;
@@ -23,19 +20,16 @@ void main() {
                         flag = 0;
                         putchar(buff_1);
                         putchar(current);
-                    } else{
+                    } else {
                         putchar(current);
                     }
-                }
-                else {
+                } else {
                     putchar(current);
                 }
-            }
-            else {
+            } else {
                 if (flag == 0) {
                     putchar(current);
-                }
-                else {
+                } else {
                     flag = 0;
                     putchar(buff_1);
                     putchar(current);
