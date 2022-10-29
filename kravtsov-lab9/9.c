@@ -11,8 +11,11 @@
 #define RADIUS 10
 #define STEPS 50
 
-int Sign(int num) {
+#define MAX(a, b) (a > b) ? a : b 
+#define ABS(a) (a < 0) ? -(a) : a 
 
+
+int Sign(int num) {
     if (num > 0) {
         return 1; 
     }
@@ -22,25 +25,6 @@ int Sign(int num) {
     }
         
     return -1;  
-
-}
-
-int Max(int a,int b){
-
-    if (a>b) {
-        return a;
-    }
-
-    return b;
-}
-
-int Abs(int a) {
-    
-    if (a < 0) {
-        return -a;
-    }
-
-    return a;
 }
 
 
@@ -53,16 +37,15 @@ int CheckInArea(int i,int j) {
     + (j - J_CENTER_SECOND)*(j - J_CENTER_SECOND);
     
     return (firstDistance <= RADIUS*RADIUS) && (secondDistance <= RADIUS*RADIUS);
-
 }
 
 
 int IncreaseI(int k, int i, int j, int l) {
-    return i/3 - Abs(i-k)*Sign(l-j);
+    return i/3 - (ABS(i-k))*Sign(l-j);
 }
 
 int IncreaseJ(int k, int i, int j, int l) {
-    return j%10 - Max(i,l)%(k+1);
+    return j%10 - (MAX(i,l))%(k+1);
 }
 
 int IncreaseL(int k, int i, int j, int l) {
@@ -76,13 +59,13 @@ int Lab9(int i, int j, int l) {
 
         if (CheckInArea(i,j)) {
             printf("%d: i = %d; j = %d; l = %d\n", k, i, j, l);
-            printf("Есть попадание\n");
+            printf("POPADANIE\n");
             return 1; 
         }
         k++;
         if (k == STEPS+1) {
             printf("%d: i = %d; j = %d; l = %d\n", k-1, i, j, l);
-            printf("Промах\n");
+            printf("PROMAH\n");
             return 0;
         }
         int newI = IncreaseI(k-1,i,j,l);
@@ -91,10 +74,7 @@ int Lab9(int i, int j, int l) {
         i = newI;
         j = newJ;
         l = newL;
-        
     }
-        
-    
 }
 
 int main() {
@@ -102,5 +82,3 @@ int main() {
 
     return 0;
 }
-
-
