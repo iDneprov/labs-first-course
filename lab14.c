@@ -16,8 +16,8 @@ int main() {
   int l = n, p = 0, i = n, j = n-1;
   while (l != 0) {
     for (int k = 0; k != l ;++k) {
-      i+= dir[p%4];
-      j+= dir[(p+3)%4];
+      i+= dir[p % 4];
+      j+= dir[(p + 3) % 4];
       printf("%d ",m[i][j]);
     }
     ++p;
