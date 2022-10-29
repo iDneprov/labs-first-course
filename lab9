@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #define I_CENTER 10
 #define J_CENTER 10
 #define I -1
@@ -27,27 +28,30 @@ int Sign(int num) {
 int Abs(int num) {
     if (num >= 0)
         return num;
-    return -1*num;
+    return -1 * num;
 }
 
 int Inext(int i, int j, int k, int l) {
-    return Max(j-k, l-k) % 30 + Max(i+l, j+k) % 20;
+    return Max(j - k, l - k) % 30 + Max(i + l, j + k) % 20;
 }
 
 int Jnext(int i, int j, int k, int l) {
-    return (Abs(i-l) * Sign(j+k) + Abs(i-k) * (j+k)) % 20;
+    return (Abs(i - l) * Sign(j + k) + Abs(i - k) * (j + k)) % 20;
 }
 
 int Lnext(int i, int j, int k, int l) {
-    return (i+k) * (j-k) * (l+k) % 25;
+    return (i + k) * (j - k) * (l + k) % 25;
 }
 
-int Laba9(int i, int j, int l) {
+int main(void) {
+    int i = I;
+    int j = J;
+    int l = L;
     for (int k = 0; k <= 50; ++k) {
         if (CheckInArea(i, j)) {
             printf("i = %d; j = %d; l = %d\nk = %d;\n", i, j, l, k);
             printf("You are in the area!\n");
-            return 1;                
+            return 0;                
         }
         i = Inext(i, j, k, l);
         j = Jnext(j, i, k, l);
@@ -55,11 +59,5 @@ int Laba9(int i, int j, int l) {
     }
     printf("i = %d; j = %d; l = %d", i, j, l);
     printf("You are not in the area\n");
-    return 0;
-}
-
-int main(void) {
-    Laba9(I, J, L);
-    return 0;
 }
 
