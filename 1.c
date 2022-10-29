@@ -54,8 +54,6 @@ for(k = 0; k<50; k++) {
     return 0;
     }
 }
-if(k == 50) {
     printf("Промах k = %d i = %d j = %d l = %d\n", k, i0, j0, l0);
     return 0;
-}
 }
