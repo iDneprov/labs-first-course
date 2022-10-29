@@ -10,13 +10,13 @@ int main(void) {
         return 0;
       }
       rp = p-48;
-      number = number*10+rp+(rp%2 == 0);
+      number = number * 10 + rp + (rp%2 == 0);
       p = getchar();
     }
     while(number != 0)
     {
-        if (number%2 == 0) number++;
-        tarr[i] = (number)%10;
+        if (number % 2 == 0) number++;
+        tarr[i] = (number) % 10;
         ++i;
         number /= 10;
     }
