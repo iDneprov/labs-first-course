@@ -47,7 +47,7 @@ int main(void) {
     i = I0;
     j = J0;
     l = L0;
-    while (k <= 50) {
+    for (k; k <= 50; ++k) {
         i = MoveI(i, j, l, k);
         j = MoveJ(i, j, l, k);
         l = MoveL(i, j, l, k);
@@ -56,8 +56,6 @@ int main(void) {
             printf("%d steps made for get it inside!\n", k);
             printf("%d %d %d %d\n", i, j, l, k);
             return 0;
-        } else {
-            k++;
         }
     }
 return 0;    
