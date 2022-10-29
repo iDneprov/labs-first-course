@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#define q 5
-#define w 10
+#define Border1 5
+#define Border2 10
 
-int ABS(int a) {
+int Abs(int a) {
     return (a > 0) ? a : -a;
 }
 
@@ -26,11 +26,11 @@ int Sign(int a) {
 }
 
 int INext(int i, int j, int k, int l) {
-    return (ABS(Max(i * (k + 5),j * (k + 6)))-ABS(Min(j * (k + 7),l * (k + 8)))) % 20;
+    return (Abs(Max(i * (k + 5),j * (k + 6)))-Abs(Min(j * (k + 7),l * (k + 8)))) % 20;
 }
 
 int JNext(int i, int j) {
-    return (ABS(Min(Min(i * j + 5,i * j - 3),i * j + 6)) * (3 - Sign(i - j))) % 25 - 7;
+    return (Abs(Min(Min(i * j + 5,i * j - 3),i * j + 6)) * (3 - Sign(i - j))) % 25 - 7;
 }
 
 int LNext(int i, int j, int l) {
@@ -38,17 +38,19 @@ int LNext(int i, int j, int l) {
 }
 
 int Check(int i, int j) {
-    return i >= q && i <= w && j <= -q && j >= -w;
+    return i >= Border1 && i <= Border2 && j <= -Border1 && j >= -Border2;
 }
 
 int main(){
-int in = 0,i0 = 10, j0 = 20, l0 = -1, u;
+int i0 = 10, j0 = 20, l0 = -1, u;
 int k;
+
 for(k = 0; k<50; k++) {
     int i = INext(i0, j0, k, l0);
     int j = JNext(i0, j0);
     int l = LNext(i0, j0, l0);
     i0 = i, j0 = j, l0 = l;
+
     if(Check(i, j)) {
     printf("Попадание на шаге k = %d\n", k);
     return 0;
