@@ -18,8 +18,6 @@ int DefineCurrent(int n) {
 	return n / 2 - 1;
 }
 
-
-
 int DoStaff(int matrix[MAX_N][MAX_N], int n, int cyclic) {
 	int lambda;
 	int indexMatrix[MAX_N * MAX_N], queue[MAX_N * MAX_N], newQueue[MAX_N * MAX_N];;
