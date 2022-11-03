@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define VOWELS 35797066ULL
+#define CONSONANTS 35797066ULL
+#define VOWELS 17842449ULL
 
 unsigned long long int CharToSet(int c) {
     if (c < 'a' || c > 'z') {
@@ -18,11 +19,9 @@ int main() {
     while (c != EOF) {
         if (c != ' ' || c != '\n') {
             lettersSet = lettersSet | CharToSet(c);
-            c = getchar();
         } else {
-            newLettersSet = lettersSet & VOWELS;
+            newLettersSet = lettersSet & (CONSONANTS | VOWELS);
             if (lettersSet == newLettersSet) {
-                printf("Yes!");
                 break;
             }
         }
@@ -30,7 +29,7 @@ int main() {
         c = getchar();
     }
 
-    newLettersSet = lettersSet & VOWELS;
+    newLettersSet = lettersSet & (CONSONANTS | VOWELS);
     if (lettersSet == newLettersSet) {
         printf("Yes!");
     } else {
