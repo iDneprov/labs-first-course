@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define CONSONANTS 35797066ULL
+#define CONSONANTS 35797578ULL
 #define VOWELS 17842449ULL
 
 unsigned long long int CharToSet(int c) {
