@@ -17,13 +17,14 @@ int main() {
     unsigned long long lettersSet = 0, newLettersSet = 0;
     c = getchar();
     while (c != EOF) {
-        if (c != ' ' || c != '\n') {
+        if (c != ' ' && c != '\n') {
             lettersSet = lettersSet | CharToSet(c);
         } else {
             newLettersSet = lettersSet & (CONSONANTS | VOWELS);
             if (lettersSet == newLettersSet) {
                 break;
-            }
+              }
+            lettersSet = 0;
         }
 
         c = getchar();
