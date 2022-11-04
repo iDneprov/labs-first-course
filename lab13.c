@@ -21,17 +21,15 @@ int main() {
             lettersSet = lettersSet | CharToSet(c);
         } else {
             newLettersSet = lettersSet & (CONSONANTS | VOWELS);
-            printf("%llu  %llu\n",lettersSet,newLettersSet );
             if (lettersSet == newLettersSet) {
                 break;
             }
             lettersSet = 0;
-            printf("%llu  %llu\n",lettersSet,newLettersSet );
         }
 
         c = getchar();
     }
-    printf("%llu  %llu\n",lettersSet,newLettersSet );
+    
     newLettersSet = lettersSet & (CONSONANTS | VOWELS);
     if ((lettersSet == newLettersSet) && (lettersSet != 0)) {
         printf("Yes!");
