@@ -36,9 +36,8 @@ int lIncrease(int l, int i, int j) {
 
 
 int Lab9(int i, int j, int l) {    
-        int p = 0;
-        for (int k = 0; k <= 50; k++) {
-            p = k;
+        int k = 0;
+        for (; k < 50; k++) {
             if(СheckInArea(i, j)) {
                 printf("i = %d; j = %d; l = %d\nk = %d;\n", i, j, l, k);
                 printf("Complete\n");
@@ -53,7 +52,7 @@ int Lab9(int i, int j, int l) {
              
         }
 
-        printf("i = %d; j = %d; l = %d\nk = %d;\n", i, j, l, p);
+        printf("i = %d; j = %d; l = %d\nk = %d;\n", i, j, l, k);
         printf("NO\n");
         return 0;
 }
