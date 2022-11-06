@@ -1,15 +1,9 @@
 #include <stdio.h> 
 #include "stdnepbool.h"
-#include <stdlib.h>
 
-bool checkInArea(int iPoint, int jPoint)
-{
-    if ((iPoint + jPoint + 10 <= 0) && (iPoint + jPoint + 20 >= 0)) 
-    {
-        return true;
-    } 
-    else
-        return false;
+bool СheckInArea(int iPoint, int jPoint) {
+    return ((iPoint + jPoint + 10 <= 0) && (iPoint + jPoint + 20 >= 0)); 
+   
 }
 
 
@@ -17,18 +11,14 @@ int Max_1(int num1, int num2) {
     return num1 >= num2 ? num1 : num2;
 }
 
-int Min(int num1, int num2) 
-{
+int Min(int num1, int num2) {
     return num1 >= num2 ? num2 : num1;
 }
 
 
-int Abs(int a)
-{
+int Abs(int a) {
     return a > 0 ? a : -a;
 }
-
-
 
 int iIncrease(int i, int j, int k, int l) {
 
@@ -48,12 +38,11 @@ int lIncrease(int l, int i, int j) {
 
 
 
-
-int lab9(int i, int j, int l) {    
+int Lab9(int i, int j, int l) {    
         int p = 0;
-        for(int k = 0; k <= 50; k++) {
+        for (int k = 0; k <= 50; k++) {
             p = k;
-            if(checkInArea(i, j)) {
+            if(СheckInArea(i, j)) {
                 printf("i = %d; j = %d; l = %d\nk = %d;\n", i, j, l, k);
                 printf("Complete\n");
                 return 1;                
@@ -75,9 +64,9 @@ int lab9(int i, int j, int l) {
 
 int main() {   
     int i = 12;
-    int j =  4;
+    int j = 4;
     int l = 3;
     
-    lab9(i, j, l);
+    Lab9(i, j, l);
     return 0;
 }
