@@ -7,7 +7,7 @@ bool СheckInArea(int iPoint, int jPoint) {
 }
 
 
-int Max_1(int num1, int num2) {
+int Max1(int num1, int num2) {
     return num1 >= num2 ? num1 : num2;
 }
 
@@ -21,19 +21,16 @@ int Abs(int a) {
 }
 
 int iIncrease(int i, int j, int k, int l) {
-
     return (i * j / (Abs(l) + 1) + j * l / (Abs(i) + 1) + i * l / (Abs(j) + 1)) % 30;
 }
 
 
 int jIncrease(int j, int i, int k, int l) {
-
-    return (i * Max_1(j, l) % 20 + j * Min(i, l) % 30 - k);
+    return (i * Max1(j, l) % 20 + j * Min(i, l) % 30 - k);
 }
 
 int lIncrease(int l, int i, int j) {
-
-    return Max_1(Max_1(i * j, i * l), j * l) % 30 + 20;
+    return Max1(Max1(i * j, i * l), j * l) % 30 + 20;
 }
 
 
