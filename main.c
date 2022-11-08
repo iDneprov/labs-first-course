@@ -1,33 +1,36 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 
 #define MAX_N 8
 
 int CustomPow(int a, int b) {
-	int result = 1;
+  int result = 1;
 
-	for (int i = 0; i < b; i++) {
-		result *= a;
-	}
-	return result;
+  for (int i = 0; i < b; i++) {
+    result *= a;
+  }
+  return result;
 }
 
 int DefineCurrent(int n) {
-	if (n % 2) {
-		return n / 2;
-	}
-	return n / 2 - 1;
+  if (n % 2) {
+    return n / 2;
+  }
+  return n / 2 - 1;
 }
 
-int DoStaff(int matrix[MAX_N][MAX_N], int n, int cyclic) {
+
+int DoStaff(int matrix[MAX_N][MAX_N], int n) {
 	int lambda;
-	int indexMatrix[MAX_N * MAX_N], queue[MAX_N * MAX_N], newQueue[MAX_N * MAX_N];;
-	int counter = 0, step = 0, current_x = DefineCurrent(n), current_y = current_x;
+	int counter = 0, step = 0, current_x, current_y;
+	int ultraRenda1, prev_x, prev_y;
 
 	if (n - 1) {
-		// ------> Разложение мтричцы на массив индексов и массив очереди
 		// Первый элемент
-		queue[n * n - 1 - counter] = matrix[current_y][current_x];
-		indexMatrix[current_y * n + current_x] = n * n - 1 - counter;
+		current_x = DefineCurrent(n);
+		current_y = current_x;
+		ultraRenda1 = matrix[current_y][current_x];
+		prev_x = current_x;
+		prev_y = current_y;
 
 		// Общий проход
 		for (int x = 0; x < n - 1; x++) {
@@ -41,8 +44,9 @@ int DoStaff(int matrix[MAX_N][MAX_N], int n, int cyclic) {
 						current_x -= lambda;
 					}
 					counter += 1;
-					queue[n * n - 1 - counter] = matrix[current_y][current_x];
-					indexMatrix[current_y * n + current_x] = n * n - 1 - counter;
+					matrix[prev_y][prev_x] = matrix[current_y][current_x];
+					prev_x = current_x;
+					prev_y = current_y;
 				}
 			}
 		}
@@ -51,50 +55,40 @@ int DoStaff(int matrix[MAX_N][MAX_N], int n, int cyclic) {
 		for (int z = 0; z < step; z++) {
 			current_x -= lambda;
 			counter += 1;
-			queue[n * n - 1 - counter] = matrix[current_y][current_x];
-			indexMatrix[current_y * n + current_x] = n * n - 1 - counter;
+			matrix[prev_y][prev_x] = matrix[current_y][current_x];
+			prev_x = current_x;
+			prev_y = current_y;
 		}
-			
-
-
-		// ------> Циклический сдвиг
-		// Циклический сдвиг массива queue вправо
-		for (int x = 0; x < cyclic; x++) {
-			for (int i = 0; i < n * n - 1; i++) {
-				newQueue[i + 1] = queue[i];
-			}
-			newQueue[0] = queue[n * n - 1];
+		// Последний элемент
+		matrix[prev_y][prev_x] = ultraRenda1;
 		
-			for (int i = 0; i < n * n; i++) {
-				queue[i] = newQueue[i];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				printf("%d ", matrix[i][j]);
 			}
+			printf("\n");
 		}
-		// Вывод итоговой матрицы
-		putchar('\n');
-		for (int i = 0; i < n * n; i++) {
-			printf("%d ", queue[indexMatrix[i]]);
-			if (!((i + 1) % n)) {
-				printf("\n");
-			}
-		}
+
 	} else {
-		printf("\n%d\n", matrix[0][0]);
+	printf("\n%d\n", matrix[0][0]);
 	}
 	return 0;
 }
 
-int main() {
-	int n, cyclic;
-	int matrix[MAX_N][MAX_N];
 
-	//Ввод данных
-	scanf("%d", &n);
-	for (int i = 0; i != n; ++i) {
-		for (int j = 0; j != n; j++) {
-			scanf("%i", &matrix[i][j]);
-		}
-	}
-	scanf("%i", &cyclic);
-	DoStaff(matrix, n, cyclic);
-	putchar('\n');
+
+int main() {
+  int n;
+  int matrix[MAX_N][MAX_N];
+
+  //Ввод данных
+  scanf("%d", &n);
+  for (int i = 0; i != n; ++i) {
+    for (int j = 0; j != n; j++) {
+      scanf("%d", &matrix[i][j]);
+    }
+  }
+
+  DoStaff(matrix, n);
+  putchar('\n');
 }
