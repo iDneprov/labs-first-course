@@ -70,7 +70,7 @@ int DoStaff(int matrix[MAX_N][MAX_N], int n) {
 		}
 
 	} else {
-	printf("\n%d\n", matrix[0][0]);
+		printf("\n%d\n", matrix[0][0]);
 	}
 	return 0;
 }
