@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    int k,num;
-    int line;
+    int k, num, line;
+
     while(1) {
         scanf("%d", &num);
         line = getchar();
@@ -13,6 +13,7 @@ int main() {
             k = k + 1;
         }
     }
+
     printf("%d\n", k);
     return 0;
 }
