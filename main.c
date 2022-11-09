@@ -55,5 +55,5 @@ int main() {
     } else {
         printf("NO T_T");
     }
-    putchar('\n');
 }
+putchar('\n');
