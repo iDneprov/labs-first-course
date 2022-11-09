@@ -3,34 +3,33 @@
 #define MAX_N 8
 
 int CustomPow(int a, int b) {
-  int result = 1;
+	int result = 1;
 
-  for (int i = 0; i < b; i++) {
-    result *= a;
-  }
-  return result;
+	for (int i = 0; i < b; i++) {
+		result *= a;
+	}
+	return result;
 }
 
 int DefineCurrent(int n) {
-  if (n % 2) {
-    return n / 2;
-  }
-  return n / 2 - 1;
+	if (n % 2) {
+		return n / 2;
+	}
+	return n / 2 - 1;
 }
-
 
 int DoStaff(int matrix[MAX_N][MAX_N], int n) {
 	int lambda;
-	int counter = 0, step = 0, current_x, current_y;
-	int ultraRenda1, prev_x, prev_y;
+	int counter = 0, step = 0, currentX, currentY;
+	int ultraRenda1, prevX, prevY;
 
 	if (n - 1) {
 		// Первый элемент
-		current_x = DefineCurrent(n);
-		current_y = current_x;
-		ultraRenda1 = matrix[current_y][current_x];
-		prev_x = current_x;
-		prev_y = current_y;
+		currentX = DefineCurrent(n);
+		currentY = currentX;
+		ultraRenda1 = matrix[currentY][currentX];
+		prevX = currentX;
+		prevY = currentY;
 
 		// Общий проход
 		for (int x = 0; x < n - 1; x++) {
@@ -39,56 +38,55 @@ int DoStaff(int matrix[MAX_N][MAX_N], int n) {
 			for (int y = 0; y < 2; y++) {
 				for (int z = 0; z < step; z++) {
 					if (y) {
-						current_y -= lambda;
-					} else {
-						current_x -= lambda;
+						currentY -= lambda;
+					}
+					else {
+						currentX -= lambda;
 					}
 					counter += 1;
-					matrix[prev_y][prev_x] = matrix[current_y][current_x];
-					prev_x = current_x;
-					prev_y = current_y;
+					matrix[prevY][prevX] = matrix[currentY][currentX];
+					prevX = currentX;
+					prevY = currentY;
 				}
 			}
 		}
 		// Конечный добор
 		lambda *= -1;
 		for (int z = 0; z < step; z++) {
-			current_x -= lambda;
+			currentX -= lambda;
 			counter += 1;
-			matrix[prev_y][prev_x] = matrix[current_y][current_x];
-			prev_x = current_x;
-			prev_y = current_y;
+			matrix[prevY][prevX] = matrix[currentY][currentX];
+			prevX = currentX;
+			prevY = currentY;
 		}
 		// Последний элемент
-		matrix[prev_y][prev_x] = ultraRenda1;
-		
+		matrix[prevY][prevX] = ultraRenda1;
+
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				printf("%d ", matrix[i][j]);
 			}
 			printf("\n");
 		}
-
-	} else {
+	}
+	else {
 		printf("\n%d\n", matrix[0][0]);
 	}
 	return 0;
 }
 
-
-
 int main() {
-  int n;
-  int matrix[MAX_N][MAX_N];
+	int n;
+	int matrix[MAX_N][MAX_N];
 
-  //Ввод данных
-  scanf("%d", &n);
-  for (int i = 0; i != n; ++i) {
-    for (int j = 0; j != n; j++) {
-      scanf("%d", &matrix[i][j]);
-    }
-  }
+	//Ввод данных
+	scanf("%d", &n);
+	for (int i = 0; i != n; ++i) {
+		for (int j = 0; j != n; j++) {
+			scanf("%d", &matrix[i][j]);
+		}
+	}
 
-  DoStaff(matrix, n);
-  putchar('\n');
+	DoStaff(matrix, n);
+	putchar('\n');
 }
