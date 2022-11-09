@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int k = 1,num;
+    int k = 1, num;
 
     while(1) {
         num = getchar();
