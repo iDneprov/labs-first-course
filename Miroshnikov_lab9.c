@@ -1,43 +1,19 @@
 #include<stdio.h>
 
 int CheckDotInArea(int i, int j) {
-    if ((j <= -i - 10) && (j >= -i - 20)) {
-        return 1;
-    }
-    return 0;
+    return ((j <= -i - 10) && (j >= -i - 20));
 }
 
 int Min(int a, int b) {
-    if (b < a) {
-        return b;
-    }
-    if (a < b) {
-        return a;
-    }
-    if (a == b) {
-        return b;
-    }
+    return (a <= b) ? a : b;
 }
 
 int Max(int a, int b) {
-    if (a > b) {
-        return a;
-    }
-    if (b > a) {
-        return b;
-    }
-    if (a == b) {
-        return b;
-    }
+    return (a >= b) ? a : b;
 }
 
 int Abs(int a) {
-    if (a >= 0) {
-        return a;
-    }
-    if (a < 0) {
-        return -a;
-    }
+    return (a >= 0) ? a : -a;
 }
 
 int NextJ(int i, int j, int l, int k) {
@@ -84,6 +60,7 @@ int main(void) {
     } else {
         printf("We are in the area with k = %d\n", k);
     }
+    return 0;
 }
 
 
