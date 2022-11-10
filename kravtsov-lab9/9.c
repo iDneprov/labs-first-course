@@ -27,7 +27,6 @@ int Sign(int num) {
 }
 
 int CheckInArea(int i, int j) {
-    
     int firstDistance = (i - I_CENTER_FIRST) * (i - I_CENTER_FIRST) 
     + (j - J_CENTER_FIRST) * (j - J_CENTER_FIRST);
     
