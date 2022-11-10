@@ -2,12 +2,7 @@
 #include <ctype.h>
 
 unsigned long long int GetSet(int c) {
-    c = tolower(c);
     return 1ULL << (c);
-}
-
-int GetResult(unsigned long long leftWordSet, unsigned long long rightWordSet) {
-    return (leftWordSet == rightWordSet);
 }
 
 int main() {
@@ -42,7 +37,7 @@ int main() {
         } else {
             flag += (flag % 2);
             if (flag == 4) {
-                result += GetResult(leftWordSet, rightWordSet);
+                result += (leftWordSet == rightWordSet);
                 leftWordSet = rightWordSet;
                 rightWordSet = 0;
                 flag = 2;
