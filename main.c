@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <ctype.h>
 
 unsigned long long int GetSet(int c) {
@@ -6,11 +6,8 @@ unsigned long long int GetSet(int c) {
     return 1ULL << (c);
 }
 
-int GetResult(unsigned long long leftWordSet, unsigned long long rightWordSet){
-    if ((leftWordSet & ~rightWordSet) || (rightWordSet & ~leftWordSet)){
-        return 0;
-    }
-    return 1;
+int GetResult(unsigned long long leftWordSet, unsigned long long rightWordSet) {
+    return (leftWordSet == rightWordSet);
 }
 
 int main() {
@@ -19,20 +16,25 @@ int main() {
     while (1) {
         c = getchar();
         if (c == EOF) {
-            break;
+            break; 
         }
 
-        if (!((c == ' ') || (c == '\n'))){
+        if (!((c == ' ') || (c == '\n'))) {
+            c = tolower(c);
             switch (flag) {
             case 0:
                 flag += 1;
             case 1:
-                leftWordSet = leftWordSet | GetSet(c);
+                if (('a' <= c) && (c <= 'z')) {
+                    leftWordSet = leftWordSet | GetSet(c);
+                }
                 break;
             case 2:
                 flag += 1;
             case 3:
-                rightWordSet = rightWordSet | GetSet(c);
+                if (('a' <= c) && (c <= 'z')) {
+                    rightWordSet = rightWordSet | GetSet(c);
+                }
                 break;
             default:
                 break;
