@@ -9,8 +9,8 @@ int main(void) {
       if (p > '9' || p < '0') {
         return 0;
       }
-      rp = p-48;
-      number = number * 10 + rp + (rp%2 == 0);
+      rp = p - '0';
+      number = number * 10 + rp + (rp % 2 == 0);
       p = getchar();
     }
     while(number != 0)
@@ -22,7 +22,7 @@ int main(void) {
     }
     char a[10] = {'0','1','2','3','4','5','6','7','8','9'};
     i--;
-    for(; i>-1; --i){
+    for(; i > -1; --i){
         putchar(a[tarr[i]]);
     }
     putchar('\n');

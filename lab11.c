@@ -4,12 +4,12 @@ int MyPow(int n,int a) {
   if (a == 0) {
     return 1;
   } else {
-    return MyPow(n,a-1) * n;
+    return MyPow(n, a - 1) * n;
   }
 }
 
 int DecimalToOctal(int n) {
-  int a = MyPow(8,10),c = 0,res = 0;
+  int a = MyPow(8, 10), c = 0, res = 0;
   while (n != 0) {
     if (n-a > 0) {
       c = c + n/a;
@@ -27,21 +27,21 @@ int DecimalToOctal(int n) {
 }
 
 int main() {
-  int x = 0,y = 0,p = 0,res;
+  int x = 0, y = 0, p = 0, res;
   p = getchar();
   while (p != '\n') {
     if (p > '9' || p < '0') {
       return 0;
     }
-    x = x * 10 + (p - 48);
+    x = x * 10 + (p - '0');
     p = getchar();
   }
   p = getchar();
   while (p != '\n') {
-    if (p > 57 || p < 48) {
+    if (p > '9' || p < '0') {
       return 0;
     }
-    y = y * 10 + (p - 48);
+    y = y * 10 + (p - '0');
     p = getchar();
   }
   x = DecimalToOctal(x);
