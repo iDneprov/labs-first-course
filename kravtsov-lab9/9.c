@@ -55,7 +55,6 @@ int Lab9(int i, int j, int l) {
     int newL;
 
     while (k <= STEPS) {
-
         if (CheckInArea(i, j)) {
             printf("%d: i = %d; j = %d; l = %d\n", k, i, j, l);
             printf("POPADANIE\n");
