@@ -5,11 +5,10 @@ int main(void) {
     int len = 0, sum = 0;
     c = getchar();
     while (c != EOF) {
-        if ((c != ' ') && (c != ',') && (c != '.') && (c != '\n')){
+        if ((c != ' ') && (c != ',') && (c != '.') && (c != '\n')) {
             len++;
-        }
-        else {
-            if (len >= 3){
+        } else {
+            if (len >= 3) {
                 sum++;  
             }
             len = 0;
@@ -17,5 +16,8 @@ int main(void) {
         c = getchar();
         }
         printf("%d\n", sum);
-    return 0;   
+    if (len >= 3) {
+        printf("%d\n", 1);
     }
+return 0;   
+}
