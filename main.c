@@ -38,9 +38,8 @@ int main() {
                 break;
             }
         } else {
-            if (flag % 2) {
-                flag += (flag % 2);
-            } if (flag == 4) {
+            flag += (flag % 2);
+            if (flag == 4) {
                 result += GetResult(leftWordSet, rightWordSet);
                 leftWordSet = rightWordSet;
                 rightWordSet = 0;
@@ -54,5 +53,5 @@ int main() {
     } else {
         printf("NO T_T");
     }
+    putchar('\n');
 }
-putchar('\n');
