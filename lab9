@@ -31,15 +31,15 @@ int Abs(int num) {
     return -1 * num;
 }
 
-int Inext(int i, int j, int k, int l) {
+int INext(int i, int j, int k, int l) {
     return Max(j - k, l - k) % 30 + Max(i + l, j + k) % 20;
 }
 
-int Jnext(int i, int j, int k, int l) {
+int JNext(int i, int j, int k, int l) {
     return (Abs(i - l) * Sign(j + k) + Abs(i - k) * (j + k)) % 20;
 }
 
-int Lnext(int i, int j, int k, int l) {
+int LNext(int i, int j, int k, int l) {
     return (i + k) * (j - k) * (l + k) % 25;
 }
 
@@ -53,11 +53,10 @@ int main(void) {
             printf("You are in the area!\n");
             return 0;                
         }
-        i = Inext(i, j, k, l);
-        j = Jnext(j, i, k, l);
-        l = Lnext(l, i, j, l);
+        i = INext(i, j, k, l);
+        j = JNext(j, i, k, l);
+        l = LNext(l, i, j, l);
     }
     printf("i = %d; j = %d; l = %d", i, j, l);
     printf("You are not in the area\n");
 }
-
