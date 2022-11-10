@@ -5,7 +5,10 @@
 
 
 int Ans(int **mat, int len, int maxim) {
-    int arr[MAX_N] = {1, 1, 1, 1, 1, 1, 1, 1};
+    int arr[MAX_N];
+    for (int i = 0; i < MAX_N; ++i) {
+        arr[i] = 1;
+    }
     for (int i = 0; i < len; ++i) {
         for (int j = 0; j < len; ++j) {
             if (mat[i][j] == maxim) {
@@ -13,6 +16,7 @@ int Ans(int **mat, int len, int maxim) {
             }
         }
     }
+
 
     for (int i = 0; i < len; ++i) {
         for (int j = 0; j < len; ++j) {
@@ -22,27 +26,30 @@ int Ans(int **mat, int len, int maxim) {
         }
         printf("\n");
     }
+    for (int i = 0; i < MAX_N; ++i) {
+        arr[i] = 1;
+    }
     return 0;
 }
 
 int main(void) {
-    int i = 0, j = 0, x, c = ' ', cur_row = -1, maxim = 0;
+    int i = 0, j = 0, x, c = ' ', curRow = -1, maxim = 0, flag = 1;
     int** mat = (int **)malloc(sizeof(int *) * MAX_N);
     for (int i = 0; i < MAX_N; ++i) {
         mat[i] = (int *)malloc(sizeof(int) * MAX_N);
     }
     while (c != EOF) {
         if (c == '\n') {
-            if (cur_row == -1) {
+            if (curRow == -1) {
               /*Матрица началась*/
-                cur_row = j - 1;
+                curRow = j - 1;
             }
-            if (i == cur_row) {
+            if (i == curRow) {
               /*Матрица считалась*/
-                Ans(mat, cur_row + 1, maxim);
+                Ans(mat, curRow + 1, maxim);
                 i = -1;
                 j = -1;
-                cur_row = -1;
+                curRow = -1;
                 maxim = 0;
 
             }
@@ -50,11 +57,16 @@ int main(void) {
             ++i;
         }
         scanf("%d", &x);
-        if (x > maxim) {
+        if(flag) {
+            maxim = x;
+            flag = 0;
+        } else if (x > maxim) {
             maxim = x;
         }
         mat[i][j] = x;
         ++j;
         c = getchar();
     }
+
+    return 0;
 }
