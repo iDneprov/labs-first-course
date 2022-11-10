@@ -8,6 +8,10 @@ int main() {
     while (1) {
         a = getchar();
         if (a == EOF) {
+            if ((k <= SIZE) && (k != 0)) {
+                ans += 1;
+                printf("\n");
+            }
             break;
         } else {
             if ((a != ' ') && (a != ',') && (a != '\v') && (a != '\n') && (a != '\t')) {
@@ -20,7 +24,6 @@ int main() {
             }
         }
     }
-    printf("%d %s", ans, "\n");
+    printf("%d\n", ans);
     return 0;
-    printf("%s", "\n");
 }
