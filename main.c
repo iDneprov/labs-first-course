@@ -1,19 +1,39 @@
 #include <stdio.h>
 
 int main() {
-    int k, num, line;
+    int k = 0, elem;
 
     while(1) {
-        scanf("%d", &num);
-        line = getchar();
-        if(line == EOF) {
+        elem = getchar();
+        if(elem == EOF) {
             break;
         }
-        if(num > 0) {
-            k = k + 1;
+        if( elem != ' ') {
+            if(elem != '-' && elem != '0') {
+                int l = 0, number = 0;
+                while(l < 6) {
+                    if(elem == ' ') {
+                        break;
+                    }
+                    number = number * 10 + elem - 48;
+                    l += 1;
+                    elem = getchar();
+                    if(elem == EOF) {
+                        break;
+                    }
+                }
+                if(number <= 32767) {
+                        k += 1;
+                }
+            }
+            while(elem != ' ') {
+                elem = getchar();
+                if(elem == EOF) {
+                        break;
+                    }
+            }
         }
     }
-
     printf("%d\n", k);
     return 0;
 }
