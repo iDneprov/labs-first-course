@@ -23,8 +23,7 @@ int main() {
         }
 
         if (!((c == ' ') || (c == '\n'))){
-            switch (flag)
-            {
+            switch (flag) {
             case 0:
                 flag += 1;
             case 1:
