@@ -1,8 +1,9 @@
-#include<stdio.h>
+#include <stdio.h>
 #define SIZE 5
 
 int main() {
-    int k, ans = 0;
+    int k = 0;
+    int ans = 0;
     char a = 0;
     while (1) {
         a = getchar();
@@ -21,4 +22,5 @@ int main() {
     }
     printf("%d %s", ans, "\n");
     return 0;
+    printf("%s", "\n");
 }
