@@ -3,7 +3,7 @@
 int main() {
     int k = 0, elem;
 
-    while( 1) {
+    while (1) {
         elem = getchar();
         if(elem == EOF) {
             break;
