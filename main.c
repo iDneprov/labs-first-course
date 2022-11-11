@@ -3,12 +3,12 @@
 int main() {
     int k = 0, elem;
 
-    while(1) {
+    while( 1) {
         elem = getchar();
         if(elem == EOF) {
             break;
         }
-        if( elem != ' ') {
+        if(elem != ' ') {
             if(elem != '-' && elem != '0') {
                 int l = 0, number = 0;
                 while(l < 6) {
@@ -22,7 +22,7 @@ int main() {
                         break;
                     }
                 }
-                if(number <= 32767) {
+                if(number <= 65535) {
                         k += 1;
                 }
             }
