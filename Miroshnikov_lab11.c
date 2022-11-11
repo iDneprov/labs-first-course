@@ -8,21 +8,7 @@ int main() {
     char fl = a;
     while (1) {
         a = getchar();
-        if (a == EOF) {
-            if ((k <= SIZE) && (k != 0)) {
-                ans += 1;
-                printf("\n");
-                break;
-            } else {
-                if (fl == '\n') {
-                    break;
-                } else {
-                    printf("\n");
-                    break;
-                }
-            }
-        } else {
-            if ((a != ' ') && (a != ',') && (a != '\v') && (a != '\n') && (a != '\t')) {
+            if ((a != ' ') && (a != ',') && (a != '\v') && (a != '\n') && (a != '\t') && (a != EOF)) {
                 k += 1;
             } else {
                 fl = a;
@@ -30,6 +16,13 @@ int main() {
                     ans += 1;
                 }
                 k = 0; 
+            }
+        if ( a == EOF) {
+            if (fl == '\n') {
+                break;
+            } else {
+                printf("\n");
+                break;
             }
         }
     }
