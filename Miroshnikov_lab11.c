@@ -17,7 +17,7 @@ int main() {
                 }
                 k = 0; 
             }
-        if ( a == EOF) {
+        if (a == EOF) {
             if (fl == '\n') {
                 break;
             } else {
