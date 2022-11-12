@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-#include <cctype>
+#include <ctype.h>
+#include <stdbool.h>
 //#include "TxLib.h"
 
 //{----------------------------------------------------------------------------------------------------------------
@@ -18,11 +19,11 @@
 
 void output(int massiv[], int n, const char name[]);
 
-void massiv_init(int massiv[], int n, double d);
+void MassivInit(int massiv[], int n, double d);
 
 void filling_massiv(int massiv[], int n);
 
-void filling_strok(char massiv[], int n);
+void FillingStrok(char massiv[], int n);
 
 int check_equal_massiv (int seq_1[], int seq_2[], int n);
 
@@ -126,7 +127,7 @@ int summ_elem_mass(int massiv[], int n)
 }
 
 
-void massiv_init(int massiv[], int n, double d)
+void MassivInit(int massiv[], int n, double d)
 {
   assert(massiv != 0);
   
@@ -165,7 +166,7 @@ void filling_massiv(int massiv[], int n)
 }
 
 
-void filling_strok(char massiv[], int n)
+void FillingStrok(char massiv[], int n)
 {
   bool res = true;
 

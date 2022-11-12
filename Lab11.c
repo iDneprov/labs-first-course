@@ -1,42 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <assert.h>
-#include <stdbool.h>
-#include <string.h>
+#include "T2.h"
 
 /*
-int input_len(int len) {
-    char len_before[] = {};
+int InputLen(int len) {
+    char lenBefore[] = {};
 
     printf("Введи длинну строки, мраз: ");
     
-    gets(len_before);
-    len = atoi(len_before); 
+    gets(lenBefore);
+    len = atoi(lenBefore); 
 
     printf("\n");
 
     return len;
 }
 */
-
-void FillingStrok(char massiv[], int n) {
-    bool res = true;
-
-    assert(massiv != 0);
-
-    printf("Введи строку, мраз: ");
-        
-    res = fgets(massiv, n + 1, stdin);
-        
-    if (res != true) {
-        printf("Криво ввел\n");
-        
-        assert(res == true);
-    }
-    printf("\n");
-}
-
 
 void Lab11(char str[]) {     
     int sliceBigin = 0;
