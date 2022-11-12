@@ -2,7 +2,6 @@
 
 #define ZERO '0'
 #define DEFOLD 0
-#define NUMBEROFTESTS 10
 
 int PowInt(int number, int degree) {
     int result = 1;
@@ -22,7 +21,8 @@ int main(void) {
     int write = 1;
     int countZero = DEFOLD;
     int symbol = getchar();
-    while (symbol != EOF) {
+    int isMinus = 0;
+    while (symbol != -1 && write) {
         if (write) {
             if ((char) symbol == ZERO && number == DEFOLD) {
                 ++countZero;
@@ -33,14 +33,22 @@ int main(void) {
                     symbol = getchar();
                 }
                 write = 0;
-            } else if (symbol == EOF) {
-                write = 0;
+            } else if (symbol == '-') {
+                isMinus = 1;
+                symbol = getchar();
             } else {
                 number = number * 10 + (symbol - ZERO);
                 symbol = getchar();
             }
         } 
+        if (symbol == -1) {
+            write = 0;
+        }
+        // printf(" %d %c", symbol, symbol);
         if (!write) {
+            if (isMinus) {
+                putchar('-');
+            }
             int numberInTwoSystem = DEFOLD, countRang = DEFOLD;
             while (number > DEFOLD) {
                 numberInTwoSystem += ((number % 2) * PowInt(10, countRang));
