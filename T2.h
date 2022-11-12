@@ -14,26 +14,26 @@
 //! � ������ ������ ����������, ������ �������� ��� � ���� �������.
 //!
 //! @par ������ �������:
-//! -#   @ref output ()
+//! -#   @ref Output ()
 //}----------------------------------------------------------------------------------------------------------------
 
-void output(int massiv[], int n, const char name[]);
+void Output(int massiv[], int n, const char name[]);
 
 void MassivInit(int massiv[], int n, double d);
 
-void filling_massiv(int massiv[], int n);
+void FillingMassiv(int massiv[], int n);
 
 void FillingStrok(char massiv[], int n);
 
-int check_equal_massiv (int seq_1[], int seq_2[], int n);
+int CheckEqualMassiv (int seq_1[], int seq_2[], int n);
 
-int check_equal_strok (char seq_1[], char seq_2[], int n);
+int CheckEqualStrok (char seq_1[], char seq_2[], int n);
 
-int summ_elem_mass(int massiv[], int n);
+int SummElemMass(int massiv[], int n);
 
-int max_elem_mass(int mass[], int n);
+int MaxElemMass(int mass[], int n);
 
-int min_elem_mass(int mass[], int n);
+int MinElemMass(int mass[], int n);
 
 //{----------------------------------------------------------------------------------------------------------------
 //! ���������� �������.
@@ -45,18 +45,18 @@ int min_elem_mass(int mass[], int n);
 //! @par ������ �������������
 //! @code
 //!         int main ()
-//!         filling_massiv’?
-//!             int seq_1[n] = {};
-//!             int seq_2[n] = {};
-//!             int summ_seq[n] = {};
+//!         FillingMassiv’?
+//!             int seq1[n] = {};
+//!             int seq2[n] = {};
+//!             int summSeq[n] = {};
 //!
-//!             massiv_init(seq_1, n, 2);
-//!             massiv_init(seq_2, n, 1);
-//!             summ_massiv(summ_seq, seq_1, seq_2, n);
+//!             MassivInit(seq1, n, 2);
+//!             MassivInit(seq2, n, 1);
+//!             SummMassiv(summSeq, seq1, seq2, n);
 //!
-//!             output (seq_1,    n, "seq_1   ");
-//!             output (seq_2,    n, "seq_2   ");
-//!             output (summ_seq, n, "summ_seq");
+//!             Output (seq1,    n, "seq1   ");
+//!             Output (seq2,    n, "seq2   ");
+//!             Output (summSeq, n, "summSeq");
 //!
 //!             return 0;
 //!         }
@@ -76,13 +76,13 @@ int min_elem_mass(int mass[], int n);
 //!         {
 //!             const int n = 5;
 //!
-//!             int seq_1[n] = {};
-//!             int seq_2[n] = {};
+//!             int seq1[n] = {};
+//!             int seq2[n] = {};
 //!
-//!             massiv_init(seq_1, n, 2);
-//!             massiv_init(seq_2, n, 1);
+//!             MassivInit(seq1, n, 2);
+//!             MassivInit(seq2, n, 1);
 //!
-//!             summ_elem_mas (seq_1, n,);
+//!             SummElemMas (seq1, n,);
 //!
 //!             return 0;
 //!         }
@@ -90,7 +90,7 @@ int min_elem_mass(int mass[], int n);
 //}----------------------------------------------------------------------------------------------------------------
 
 
-void output(int massiv[], int n, const char name[])
+void Output(int massiv[], int n, const char name[])
 {
   printf ("%s = {", name);
   
@@ -109,7 +109,7 @@ void output(int massiv[], int n, const char name[])
 }
 
 
-int summ_elem_mass(int massiv[], int n)
+int SummElemMass(int massiv[], int n)
 {
   int summ = 0;
 
@@ -140,7 +140,7 @@ void MassivInit(int massiv[], int n, double d)
 }
 
 
-void filling_massiv(int massiv[], int n)
+void FillingMassiv(int massiv[], int n)
 {
   bool res = true;
 
@@ -188,7 +188,7 @@ void FillingStrok(char massiv[], int n)
 }
 
 
-int max_elem_mass(int mass[], int n)
+int MaxElemMass(int mass[], int n)
 {
   int max = mass[0];
   
@@ -207,7 +207,7 @@ int max_elem_mass(int mass[], int n)
 }
 
 
-int min_elem_mass(int mass[], int n)
+int MinElemMass(int mass[], int n)
 {
   int min = mass[0];
   
@@ -226,7 +226,7 @@ int min_elem_mass(int mass[], int n)
 }
 
 
-int check_equal_massiv (int seq_1[], int seq_2[], int n)
+int CheckEqualMassiv (int seq_1[], int seq_2[], int n)
 {
   assert(seq_1 != 0);
   
@@ -243,7 +243,7 @@ int check_equal_massiv (int seq_1[], int seq_2[], int n)
 }
 
 
-int check_equal_strok (char seq_1[], char seq_2[], int n)
+int CheckEqualStrok (char seq_1[], char seq_2[], int n)
 {
   assert(seq_1 != 0);
   
