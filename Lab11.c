@@ -20,7 +20,7 @@ int input_len(int len) {
 }
 */
 
-void Filling_strok(char massiv[], int n) {
+void FillingStrok(char massiv[], int n) {
     bool res = true;
 
     assert(massiv != 0);
@@ -39,18 +39,18 @@ void Filling_strok(char massiv[], int n) {
 
 
 void Lab11(char str[]) {     
-    int slice_bigin = 0;
-    int slice_end = 0;
-    int tmp_first_index = 0;
-    int tmp_last_index = 0;
+    int sliceBigin = 0;
+    int sliceEnd = 0;
+    int tmpFirstIndex = 0;
+    int tmpLastIndex = 0;
     
-    int number_num = 0;
+    int numberNum = 0;
 
     int i = 0;
     while (i < strlen(str)) {
         if (isdigit(str[i])) {
-            ++number_num;
-            slice_bigin = i;
+            ++numberNum;
+            sliceBigin = i;
             
             while (i < strlen(str)) {
                 if (isdigit(str[i]))
@@ -59,23 +59,23 @@ void Lab11(char str[]) {
                     break;
             }   
 
-            if (number_num == 1) {
-                tmp_first_index = slice_bigin;
-                tmp_last_index = i;
+            if (numberNum == 1) {
+                tmpFirstIndex = sliceBigin;
+                tmpLastIndex = i;
             }   
-            slice_end = i;
+            sliceEnd = i;
         }        
         ++i;
     }
 
-    int j = tmp_first_index;
-    for (; j < tmp_last_index; ++j) {
+    int j = tmpFirstIndex;
+    for (; j < tmpLastIndex; ++j) {
         putchar(str[j]);
     }
     printf("\n");
 
-    j = slice_bigin;
-    for (; j < slice_end; ++j) {
+    j = sliceBigin;
+    for (; j < sliceEnd; ++j) {
         putchar(str[j]);
     }
     printf("\n");
@@ -85,7 +85,7 @@ void Lab11(char str[]) {
 int main(void) {
     int n = 5;
     char str[n];
-    Filling_strok(str, n);
+    FillingStrok(str, n);
     
     Lab11(str);
 
