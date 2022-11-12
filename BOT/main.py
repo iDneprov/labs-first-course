@@ -3,23 +3,16 @@ import pickle
 from telebot import types
 
 
-# Сделай наборы фраз, или АНЕКДОТЫ и ГИМН и ХАРД ДРИМЕРА
-
-
 # Задается токен
 Bot = telebot.TeleBot("5772093592:AAEUEST7p82vGV6dwfRnaqd44RMK57yavbY")
 
-# База данных очереди
 BANNED_NAMES = ["IDDQD", "DQDDI", "Вернуться", "Подтвердить", "IVALTEK"]
-
-
 users_dict = {}
 QUEUE = []
 
 #----------------> РАБОТА С ФАЙЛАМИ <---------------------
 txt = open("DATA.pickle").read()
-if txt == "":
-    with open('DATA.pickle', 'wb') as f: pickle.dump(users_dict, f)
+if txt == "": with open('DATA.pickle', 'wb') as f: pickle.dump(users_dict, f)
 else:
     with open('DATA.pickle', 'rb') as f: users_dict = pickle.load(f)
     for user in users_dict.keys():
@@ -37,13 +30,13 @@ else:
 
 #----------------> ФУНКЦИИ <---------------------
 def initialize_user(USER_ID, message):
-
     """Производит начальную инициализацию пользователя
 
     :argument USER_ID: ID пользователя"""
+    
     if USER_ID in users_dict.keys():
-        if users_dict[USER_ID]["Homerun"] == "New":
-            initialize_menu(message, "Приветствую товарищ!\nЧто тебе нужно?", users_dict[USER_ID]["Location"])
+        if users_dict[USER_ID]["Homerun"] == "New": initialize_menu(message, "Приветствую товарищ!\nЧто тебе нужно?", users_dict[USER_ID]["Location"])
+            
     else:
         user_tag = message.from_user.username
         users_dict[USER_ID] = {"Name": "",
@@ -62,6 +55,7 @@ def welcome_in_queue(USER_ID):
     """Добавляет в очередь пользователя
 
     :argument USER_ID: ID пользователя"""
+    
     if users_dict[USER_ID]["Name"] == "":
         users_dict[USER_ID]["InQueueStatus"] = True
         users_dict[USER_ID]["ExecuteStatus"] = False
@@ -74,7 +68,7 @@ def welcome_in_queue(USER_ID):
         users_dict[USER_ID]["Cash"] = ""
         QUEUE.append(users_dict[USER_ID]["Name"] + "_" + str(USER_ID))
 
-
+# !ВНИМАНИЕ!  -->  Здесь надо за место USER_ID  ТОЛЬКО мое ID. Узнать, заменить.
 def welcome_king(USER_ID):
     """Добавляет меня
 
@@ -88,28 +82,26 @@ def welcome_king(USER_ID):
 
 
 def initialize_menu(message_arg, text, USER_LOC):
-    """Функция ининцализирующая главное меню (для юзера - свое, для админа - свое)
+    """Функция ининцализирующая главное меню учитывая статусы
 
-    :argument message_arg: передай сюда message (IT JUST WORKS)
-    :argument text: Передай сюда текст который выведется при попадании в меню. (При разных исходах - разный текст, помогает отладке, и вообще более по живому)"""
-
-    if type(message_arg) == type(123):
-        USER_ID = message_arg
-    else:
-        USER_ID = message_arg.from_user.id
-
-
+    :argument message_arg: передай сюда message id или id пользователя которому придет сообщение
+    :argument text: Передай сюда текст который выведется при попадании в меню"""
+    
+    # !ВНИМАНИЕ!  -->  Нужно как то стандартизировать ввод и обработку ID для случая когда дается собственный и чужой ID
+    if type(message_arg) == type(123): USER_ID = message_arg
+    else: USER_ID = message_arg.from_user.id
+        
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     users_dict[USER_ID]["Homerun"] = "Old"
-
-
 
     if USER_LOC == "Main":
         addition_button = types.KeyboardButton("Credits")
         look_queue_button = types.KeyboardButton("Посмотреть очередь")
+        
         if users_dict[USER_ID]["InQueueStatus"] == False:
             get_in_queue_button = types.KeyboardButton("Встать в очередь")
             markup.add(get_in_queue_button, look_queue_button, addition_button)
+            
         else:
             get_in_queue_button = types.KeyboardButton("Выйти из очереди")
             change_name_button = types.KeyboardButton("Изменить имя")
@@ -131,7 +123,6 @@ def initialize_menu(message_arg, text, USER_LOC):
         return_button = types.KeyboardButton("Вернуться назад")
         confirm_registration_button = types.KeyboardButton("Подтвердить")
         markup.add(return_button, confirm_registration_button)
-
 
     Bot.send_message(USER_ID, text=text, reply_markup=markup)
 
@@ -199,7 +190,6 @@ def change_name(USER_ID):
         initialize_menu(USER_ID, "Пришли новое имя. Когда будешь готов, жми на кнопку подтвердить", users_dict[USER_ID]["Location"])
 
 
-
 def get_index_from_id(USER_ID):
     Index = QUEUE.index(users_dict[USER_ID]["Name"] + "_" + str(USER_ID))
     return Index
@@ -217,11 +207,13 @@ def send_queue_status(target_USER_ID):
     if target_index == 0: Bot.send_message(target_USER_ID, "Готовься. Ты следующий!")
     else: Bot.send_message(target_USER_ID, "Уже ОЧЕНЬ скоро!\nПеред тобой " + str(target_index) + " человек!")
 
+        
 def spam_queue_for_all():
     for target in QUEUE:
         target_id = int(target.split("_")[1])
         send_queue_status(target_id)
 
+        
 def fix_menu(USER_ID, USER_LOC):
     """{"Name": "",
      "ExecuteStatus": False,
@@ -232,6 +224,7 @@ def fix_menu(USER_ID, USER_LOC):
      "Tag": user_tag,
      "Location": "Main",
      "Homerun": "New"}"""
+    # Если вдруг что-то пошло не так из за интернет соединение, перезапуска бота, юзер жмет сюда и все чинится. Halelujah!!
     if USER_LOC == "Admin_Main":
         users_dict[USER_ID]["ExecuteStatus"] = False
         users_dict[USER_ID]["NameChangeStatus"] = False
