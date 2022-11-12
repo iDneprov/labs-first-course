@@ -46,14 +46,14 @@ int main(void) {
         }
         // printf(" %d %c", symbol, symbol);
         if (!write) {
-            if (isMinus) {
-                putchar('-');
-            }
             int numberInTwoSystem = DEFOLD, countRang = DEFOLD;
             while (number > DEFOLD) {
                 numberInTwoSystem += ((number % 2) * PowInt(10, countRang));
                 ++countRang;
                 number /= 2;
+            }
+            if (isMinus && numberInTwoSystem > DEFOLD) {
+                putchar('-');
             }
             int nowRangNumber, middle = countRang / 2, isZero = 1;
             while (numberInTwoSystem > DEFOLD || countRang > DEFOLD) {
@@ -78,6 +78,7 @@ int main(void) {
             }
             putchar('\n');
             write = 1;
+            isMinus = 0;
         }
     }
 }
