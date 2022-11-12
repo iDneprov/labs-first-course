@@ -1,4 +1,6 @@
-#include "T2.h"
+#include <stdio.h>
+#include <assert.h>
+#include <stdbool.h>
 
 int LenNum(int num) {
     int len = 0;
@@ -19,6 +21,16 @@ bool TestLenNum(void) {
         return false;
 
     return true;
+}
+
+void MassivInit(int massiv[], int n, double d) {
+  assert(massiv != 0);
+  
+  for (int i = 0; i < n; i++) {
+    assert(i < n);
+    
+    massiv[i] = d*i;
+  }
 }
 
 void Lab12(int num) {

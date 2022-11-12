@@ -1,4 +1,8 @@
-#include "T2.h"
+#include <stdio.h>
+#include <assert.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
 
 /*
 int InputLen(int len) {
@@ -14,6 +18,23 @@ int InputLen(int len) {
     return len;
 }
 */
+
+void FillingStrok(char massiv[], int n) {
+  bool res = true;
+  
+  assert(massiv != 0);
+  
+  printf("Введи строку, мраз: ");
+    
+  res = fgets(massiv, n, stdin);
+    
+  if (res != true) {
+    printf("Криво ввел\n");
+      
+    assert(res == true);
+  }
+  printf("\n");
+}
 
 void Lab11(char str[]) {     
     int sliceBigin = 0;
