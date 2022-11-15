@@ -97,3 +97,4 @@ int main(void) {
         printf("\nNumber: %d Sum: %d\n", anser, Sum(anser));
     }
 }
+
