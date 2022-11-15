@@ -1,45 +1,35 @@
 #include <stdio.h>
+#include <ctype.h>
+
+unsigned int LetterCheck(char s) {
+    s = tolower(s);
+    if(s <= 'z' && s >= 'a' && s != 'a' && s != 'e' && s != 'i' && s != 'u' && s != 'y' && s != 'o') {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 int main() {
-    int k = 0, elem;
-
-    while (1) {
-        elem = getchar();
-        if(elem == EOF) {
-            break;
-        }
-        
-        int koef = 1;
-
-        if(elem == '-' || elem == '0') {
-            koef = 0;
-        }
-        if(elem >= '0' && elem <= '9') {
-
-            int l = 0, number = 0;
-
-            while(l < 6) {
-                if(elem == ' ') {
-                    break;
-                }
-                number = number * 10 + elem - 48;
-                l += 1;
-                elem = getchar();
-                if(elem == EOF) {
-                    break;
-                }
-            }
-            if(number <= 65535) {
-                k += koef;
-            }
-        }
-        while(elem != ' ') {
-            elem = getchar();
-            if(elem == EOF) {
+    int s, k = 0, result = 0;
+    while(1) {
+        s = getchar();
+        if(s == ' ' || s == '\n' || s == EOF) {
+            if(k == 1) {
+                result = 1;
                 break;
             }
-        }      
+            k = 0;
+        }
+            k += LetterCheck(s);
+        if(s == EOF) {
+            break;
+        }
     }
-    printf("%d\n", k);
-    return 0;
+    if(result == 1) {
+        printf("Yes. There are word with one consonant letter");
+    } else {
+        printf("No words with one consonant letter");
+    }
+    putchar('\n');
 }
