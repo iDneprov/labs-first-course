@@ -1,13 +1,13 @@
 #include <stdio.h> //lab 11 variant 
 
 char CheckTub(char s) {
-    return (s < '!' || s == ' ' || s == '.' || s == ',');
+    return (s < 33 || s == ' ' || s == '.' || s == ',');
 }
 
 char FindTubs(char sLast) {
     char s = getchar();
     while (s != EOF) {
-        if (((s => '0' && s <= '9') || s == '-') && CheckTub(sLast)) {
+        if (((s > 47 && s < 58) || s == '-') && CheckTub(sLast)) {
             return s;
         }
         sLast = s;
@@ -29,11 +29,11 @@ int FindNum() {
             s = FindTubs(' ');
         }
         firstNum = -1;
-        while (s => '0' && s <= '9') {
+        while (s > 47 && s < 58) {
             if (firstNum == -1) {
                 firstNum++;
             }
-            firstNum = firstNum * 10 + s - '0';
+            firstNum = firstNum * 10 + s - 48;
             s = getchar(); 
         }
     }
