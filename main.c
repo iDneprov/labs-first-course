@@ -11,22 +11,22 @@ unsigned int LetterCheck(char s) {
 }
 
 int main() {
-    int s, k = 0, result = 0;
-    while(1) {
+    int s = 0, k = 0, result = 0;
+    while (1) {
         s = getchar();
-        if(s == ' ' || s == '\n' || s == EOF) {
-            if(k == 1) {
+        if (s == ' ' || s == '\n' || s == EOF) {
+            if (k == 1) {
                 result = 1;
                 break;
             }
             k = 0;
         }
             k += LetterCheck(s);
-        if(s == EOF) {
+        if (s == EOF) {
             break;
         }
     }
-    if(result == 1) {
+    if (result == 1) {
         printf("Yes. There are word with one consonant letter");
     } else {
         printf("No words with one consonant letter");
