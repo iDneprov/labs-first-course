@@ -23,7 +23,7 @@ long long Factorial(int number) {
 }
 
 int main() {
-    long double x = 0, y = 0, step, a = 0, b = 1, eps = 0.0000001, gipsin;
+    long double x = 0, y = 0, step, a = 0, b = 1, eps = 1e-15, gipsin;
   	int n = 51, c = 1;
 		step = (b - a) / n;
 		printf("Значение функции sinh    ");
