@@ -41,7 +41,11 @@ int main (void) {
         }
     }
     if (!isSpace) {
-        lettersFromAllWordSet = lettersFromAllWordSet & lettersFromOneWordSet;
+        if (!isFirstWord) {
+            lettersFromAllWordSet = lettersFromAllWordSet & lettersFromOneWordSet;
+        } else {
+            lettersFromAllWordSet = lettersFromOneWordSet;
+        }
     }
     lettersFromAllWordSet = lettersFromAllWordSet & (~VOWELS);
     if (lettersFromAllWordSet != 0) {
