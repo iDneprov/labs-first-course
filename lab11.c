@@ -12,7 +12,7 @@ int main(void) {
                 if (len >= 3) {
                 sum++;  
             }
-            len = 0;
+        len = 0;
             } else {
                 if (len >= 3) {
                 sum++;  
@@ -23,7 +23,7 @@ int main(void) {
             }
             }  
         c = getchar();
-        }
+    }
         if (flag){
             flag = 0;
             printf("%d\n", sum);
@@ -31,5 +31,5 @@ int main(void) {
     if (len >= 3 && flag) {
         printf("%d\n", 1);
     }
-return 0;   
+    return 0;   
 }
