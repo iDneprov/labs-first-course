@@ -8,11 +8,8 @@ int main(void) {
     char c;
     c = getchar();
     while (c != EOF) {
-        if (IsEvenDigit(c)) {
+        if (IsEvenDigit(c) || c == '\n') {
             putchar(c);
-        }
-        if (c == '\n'){
-            putchar('\n');
         }
         c = getchar();
     }
