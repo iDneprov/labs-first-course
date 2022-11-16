@@ -12,11 +12,10 @@ unsigned int CharToSet(char c) {
 }
 
 int main(void) {
-    int i, k = 0, flag = 0;
+    int i, k = 0, flag = 0, eof_flag = 0;
     char c;
     unsigned int ans_set = 0;
-    c = getchar();
-    while (c != EOF) {
+    while (c = getchar()) {
         if (c == '\n' || c == ' ') {
             if (k == 1) {
                 flag = 1;
@@ -26,12 +25,27 @@ int main(void) {
         } else {
             ans_set = ans_set | CharToSet(c);
             ans_set = ans_set & GLASNIYE;
-            if (ans_set != 0){
+            if (ans_set != 0) {
                 ++k;
             }
         }
-        c = getchar();
+        if (c != EOF) {
+            continue;
+        } else {
+            eof_flag = 1;
+            if (flag == 1) {
+                printf("yes\n");
+            } else {
+                if (k == 1) {
+                    printf("yes\n");
+                } else {
+                    printf("no\n");
+                }   
+            }
+            break;  
+        }
     }
+if (eof_flag == 0) {
     if (flag == 1) {
         printf("yes\n");
     } else {
@@ -41,4 +55,6 @@ int main(void) {
             printf("no\n");
         }
     }
+}
+return 0;
 }
