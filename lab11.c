@@ -27,7 +27,7 @@ int main(void) {
         if (flag){
             flag = 0;
             printf("%d\n", sum);
-        }
+    }
     if (len >= 3 && flag) {
         printf("%d\n", 1);
     }
