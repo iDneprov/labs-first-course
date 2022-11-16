@@ -1,9 +1,26 @@
 #include <stdio.h>
 #include <ctype.h>
 
-unsigned int LetterCheck(char s) {
+#define VOWELS (1u << ('a' - 'a') | 1u << ('o' - 'a') | 1u << ('i' - 'a') | 1u << ('e' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'))
+
+unsigned int CharToSet(char s) {
     s = tolower(s);
-    if(s <= 'z' && s >= 'a' && s != 'a' && s != 'e' && s != 'i' && s != 'u' && s != 'y' && s != 'o') {
+    if (s < 'a' || s > 'z') {
+        return 0;
+    } else {
+        return 1u << (s - 'a');
+    }
+}
+
+unsigned int CheckWord(unsigned int word) {
+    char letter;
+    int k = 0;
+    for (letter = 'a'; letter <= 'z'; letter++) {
+        if ((word & CharToSet(letter)) != 0) {
+            k = k + 1;
+        }
+    }
+    if (k == 1) {
         return 1;
     } else {
         return 0;
@@ -11,17 +28,19 @@ unsigned int LetterCheck(char s) {
 }
 
 int main() {
-    int s = 0, k = 0, result = 0;
+    int s = 0, result = 0;
+    unsigned int lettersFromWord = 0;
     while (1) {
         s = getchar();
         if (s == ' ' || s == '\n' || s == EOF) {
-            if (k == 1) {
-                result = 1;
+            lettersFromWord = lettersFromWord & ~VOWELS;
+            result = result + CheckWord(lettersFromWord);
+            if (result != 0) {
                 break;
             }
-            k = 0;
+            lettersFromWord = 0;
         }
-            k += LetterCheck(s);
+        lettersFromWord = lettersFromWord | CharToSet(s);
         if (s == EOF) {
             break;
         }
