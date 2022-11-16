@@ -16,7 +16,7 @@ int main(void) {
     char c;
     unsigned int ans_set = 0;
     while (c = getchar()) {
-        if (c == '\n' || c == ' ') {
+        if (((c == '\n') || (c == ' ')) && (c != EOF)) {
             if (k == 1) {
                 flag = 1;
             } else {
@@ -26,12 +26,11 @@ int main(void) {
             ans_set = ans_set | CharToSet(c);
             ans_set = ans_set & GLASNIYE;
             if (ans_set != 0) {
+                ans_set = 0;
                 ++k;
             }
         }
-        if (c != EOF) {
-            continue;
-        } else {
+        if (c == EOF) {
             eof_flag = 1;
             if (flag == 1) {
                 printf("yes\n");
