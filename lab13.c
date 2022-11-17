@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define GLASNIYE (1u << ('a' - 'a') | 1u << ('e' - 'a') | 1u << ('i' - 'a') |   1u << ('o' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'));
+const unsigned int GLASNIYE = (1u << ('a' - 'a') | 1u << ('e' - 'a') | 1u << ('i' - 'a') |   1u << ('o' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'));
+
 
 unsigned int CharToSet(char c) {
     c = tolower(c);
@@ -15,7 +16,8 @@ int main(void) {
     int i, k = 0, flag = 0, eof_flag = 0;
     char c;
     unsigned int ans_set = 0;
-    while (c = getchar()) {
+    while (1) {
+        c = getchar();
         if (((c == '\n') || (c == ' ')) && (c != EOF)) {
             if (k == 1) {
                 flag = 1;
