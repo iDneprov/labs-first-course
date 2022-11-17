@@ -23,7 +23,8 @@ int main() {
     unsigned int letter1 = 0;
     unsigned int letter2 = 0;
     unsigned int supportletter = 0;
-    while (c = getchar()) {
+    while (1) {
+        c = getchar();
         if (c != EOF) {
             prevsym = c;
         }
