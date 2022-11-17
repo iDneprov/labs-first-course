@@ -38,9 +38,6 @@ int main() {
                 letter2 = letter2 | CharToSet(c);
             }
         }
-        if (SeparatorsCheck(c) && (iter == 0)) {
-            continue;
-        }
         if (SeparatorsCheck(c) && (iter != 0)) {
             iter += 1;
             if (iter >= 3) {
@@ -53,17 +50,17 @@ int main() {
                 letter1 = supportletter;
                 letter2 = 0;
             }
-            if (c == EOF) {
-                if (prevsym != '\n') {
-                    printf("\n");
-                }
-                if (flag == 0) {
-                    printf("NO\n");
-                } else {
-                    printf("YES\n");
-                }
-                break;
+        }
+        if (c == EOF) {
+            if (prevsym != '\n') {
+                printf("\n");
             }
+            if (flag == 0) {
+                printf("NO\n");
+            } else if (flag == 1) {
+                printf("YES\n");
+            }
+            break;
         }
     }
     return 0;
