@@ -28,19 +28,28 @@ unsigned int CheckWord(unsigned int word) {
 }
 
 int main() {
-    int s = 0, result = 0;
+    int s = 0, result = 0, flag = 1;
     unsigned int lettersFromWord = 0;
     while (1) {
         s = getchar();
         if (s == ' ' || s == '\n' || s == EOF) {
             lettersFromWord = lettersFromWord & ~VOWELS;
             result = result + CheckWord(lettersFromWord);
-            if (result != 0) {
+            if (result != 0 && flag != 0) {
                 break;
             }
+             else {
+                result = 0;
+             }
             lettersFromWord = 0;
+            flag = 1;
+        } else {
+            if ((CharToSet(s) & ~VOWELS & lettersFromWord) == 0) {
+            lettersFromWord = (lettersFromWord | CharToSet(s)) & ~VOWELS;
+            } else {
+                flag = 0;
+            }
         }
-        lettersFromWord = lettersFromWord | CharToSet(s);
         if (s == EOF) {
             break;
         }
