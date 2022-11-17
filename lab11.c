@@ -24,7 +24,7 @@ int main(void) {
             }  
         c = getchar();
     }
-        if (flag){
+        if (flag) {
             flag = 0;
             printf("%d\n", sum);
     }
