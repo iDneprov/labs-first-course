@@ -1,91 +1,127 @@
 #include <stdio.h>
 #include <assert.h>
-#include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
 
-/*
-int InputLen(int len) {
-    char lenBefore[] = {};
+void Lab11(void) {     
+    char symb = 'a';
+    char symbLast = 'b';
 
-    printf("Введи длинну строки, мраз: ");
+    int firstNum = 0;
+    int lastNum = 0;
+    int tmpLastNum = 0;
+
+    int statusFirst = 0;
+    int statusMinus = 0;
     
-    gets(lenBefore);
-    len = atoi(lenBefore); 
-
-    printf("\n");
-
-    return len;
-}
-*/
-
-void FillingStrok(char massiv[], int n) {
-  bool res = true;
-  
-  assert(massiv != 0);
-  
-  printf("Введи строку, мраз: ");
-    
-  res = fgets(massiv, n, stdin);
-    
-  if (res != true) {
-    printf("Криво ввел\n");
-      
-    assert(res == true);
-  }
-  printf("\n");
-}
-
-void Lab11(char str[]) {     
-    int sliceBigin = 0;
-    int sliceEnd = 0;
-    int tmpFirstIndex = 0;
-    int tmpLastIndex = 0;
-    
-    int numberNum = 0;
-
     int i = 0;
-    while (i < strlen(str)) {
-        if (isdigit(str[i])) {
-            ++numberNum;
-            sliceBigin = i;
-            
-            while (i < strlen(str)) {
-                if (isdigit(str[i]))
-                    ++i;
-                else
-                    break;
-            }   
+    while (symb != EOF) {        
+        //printf("\nsymb == %c\n", symb);
+        
+        if ((i == 1 && isdigit(symb)) || symb == '-' || symb == ' ' || (symbLast == ' ' && isdigit(symb))) {        
+            //printf("\nsymb_if == %c\n", symb);
+            if (isdigit(symb) || symb == '-') {
+                
+                if (statusFirst == 0) {
+                    if (symb == '-')
+                        ++statusMinus;
+                    
+                    if (isdigit(symb))
+                        firstNum = symb - '0';
+                    
+                    symb = getchar();
 
-            if (numberNum == 1) {
-                tmpFirstIndex = sliceBigin;
-                tmpLastIndex = i;
+                    while (true) {
+                        //printf("\nsymb_in_first == %c\n", symb);
+                        
+                        if (isdigit(symb)) {    
+                            firstNum = firstNum * 10 + (symb - '0');
+                        }
+                        else {                         
+                            //printf("\nsymb_first == %c\n", symb);
+                            
+                            if (symb == EOF) {
+                                ++statusFirst;
+                                break;
+                            }
+                            
+                            if (symb != ' ') {
+                                firstNum = 0;
+                                break;
+                            }
+                            
+                            ++statusFirst;
+                            break;
+                        }
+
+                        symb = getchar();        
+                    }
+                    //printf("\nsymb_out_first == %c\n", symb);
+                    
+                    if (statusMinus == 1) {
+                        firstNum = -1 * firstNum; 
+                        statusMinus = 0;
+                    }
+                }        
+                else {
+                    if (symb == '-')
+                        ++statusMinus;
+                    
+                    if (isdigit(symb))
+                        tmpLastNum = symb - '0';
+                    
+                    symb = getchar();
+                    
+                    while (true) {
+                        //printf("\nsymb_in_last== %c\n", symb);
+                        if (isdigit(symb)) { 
+                            tmpLastNum = tmpLastNum * 10 + (symb - '0');
+                        }
+                        else {
+                            //printf("\nsymb_last == %c\n", symb);
+
+                            if (symb == EOF) {
+                                lastNum = tmpLastNum;
+                                break;
+                            }
+
+                            if (symb != ' ') {
+                                if (lastNum == 0)    
+                                    lastNum = firstNum;
+                                break;
+                            }
+                            
+                            lastNum = tmpLastNum;
+                                
+                            break;
+                        }
+
+                        symb = getchar();
+                    }                
+                    //printf("\nsymb_out_last== %c\n", symb);
+                    
+                    if (statusMinus == 1) {
+                        lastNum = -1 * lastNum; 
+                        statusMinus = 0;            
+                    }
+                }
             }   
-            sliceEnd = i;
-        }        
+        }
+        
+        symbLast = symb;
+        
+        symb = getchar();
+        
         ++i;
     }
-
-    int j = tmpFirstIndex;
-    for (; j < tmpLastIndex; ++j) {
-        putchar(str[j]);
-    }
-    printf("\n");
-
-    j = sliceBigin;
-    for (; j < sliceEnd; ++j) {
-        putchar(str[j]);
-    }
-    printf("\n");
+    
+    printf("\n%d\n", firstNum);
+    printf("%d\n", lastNum);
 }
 
-
 int main(void) {
-    int n = 5;
-    char str[n];
-    FillingStrok(str, n);
     
-    Lab11(str);
+    Lab11();
 
     return 0;
 }
