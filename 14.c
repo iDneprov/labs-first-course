@@ -1,65 +1,72 @@
 #include <stdio.h> //lab 12 variant 26
 
 char CheckTub(char s) {
-    return (s < 33 || s == ' ' || s == '.' || s == ',' || s == '-');
+    return (s < '!' || s == ' ' || s == '.' || s == ',' || s == '-');
 }
 
 char FindTubs(char sLast) {
     char s = getchar();
+    putchar(sLast);
     while (s != EOF) {
-        if ((s > 47 && s < 58) && CheckTub(sLast)) {
+        if ((s >= '0' && s <= '9') && CheckTub(sLast)) {
             return s;
         }
         sLast = s;
-        putchar(s);
+        putchar(sLast);
         s = getchar();
     }
     return s;
 }
 
-int SumNums(char nums[], int i) {
-    int sum = 0, j = 0;
-    if (i < 2) {
-        while (j < i) {
-            putchar(nums[j]);
-            j++;
-        }
+int SumNums(long long int num) {
+    long long int resultNum = 0, i = 1;
+    int sum = 0, toFirst = 0, flag = 0;
+    if (num < 10) {
+        putchar(num + '0');
         return 0;
     }
-    if (i%2) {
-        putchar(nums[0]);
-        j++;
-    }
-    while (j < i) {
-        sum = nums[j] + nums[j + 1] - 96;
-        if (sum < 10) {
-            sum = sum + '0';
-            putchar(sum);
+    while (num > 9) {
+        toFirst = num - (num / 100) * 100;
+        num /= 10;
+        sum = toFirst / 10 + (toFirst - (toFirst / 10) * 10);
+        if (flag) {
+            flag = 0;
+            resultNum += (sum - toFirst / 10) * i;
+            i *= 10;
+        } else {
+            resultNum = (sum - toFirst / 10) * i + resultNum;
         }
-        putchar(nums[j]);
-        putchar(nums[j + 1]);
-        j += 2;
+        i *= 10;
+        if (sum < 10) {
+            flag = 1;
+            resultNum = sum * i * 10 + resultNum;
+        }
+    }
+    if (flag) {
+        putchar(resultNum / (i * 10) + '0');
+        resultNum -= ((resultNum / i) * i);
+    }
+    putchar(num + '0');
+    while (i > 1) {
+        i /= 10;
+        toFirst = resultNum / i;
+        resultNum -= toFirst * i;
+        putchar(toFirst + '0');
     }
     return 0;
 }
 
 int SumNumsInNumers() {
-    char s = FindTubs(' ');
-    char nums[32];
-    int firstNum = 0, i = 0;
+    char s = ' ';
+    long long int num = 0;
     while (s != EOF) {
-        i = 0;
-        if (firstNum) {
-            putchar(s);
-            s = FindTubs(s);
-        }
-        firstNum = 1;
+        s = FindTubs(s);
+        num = 0;
         while (!CheckTub(s)) {
-            nums[i] = s;
-            i++;
+            num = num * 10 + (s - '0');
             s = getchar(); 
         }
-        SumNums(nums, i);
+        SumNums(num);
     }
     putchar('\n');
     return 0;
@@ -68,3 +75,4 @@ int SumNumsInNumers() {
 int main(void) {
     SumNumsInNumers();
 }
+
