@@ -1,13 +1,13 @@
 #include <stdio.h> //lab 11 variant 
 
 char CheckTub(char s) {
-    return (s < 33 || s == ' ' || s == '.' || s == ',');
+    return (s < '!' || s == ' ' || s == '.' || s == ',');
 }
 
 char FindTubs(char sLast) {
     char s = getchar();
     while (s != EOF) {
-        if (((s > 47 && s < 58) || s == '-') && CheckTub(sLast)) {
+        if (((s >= '0' && s <= '9') || s == '-') && CheckTub(sLast)) {
             return s;
         }
         sLast = s;
@@ -16,7 +16,7 @@ char FindTubs(char sLast) {
     return s;
 }
 
-int FindNum() {
+int FindNum(int* sum) {
     char s = FindTubs(' ');
     int firstNum = -2, flagMinus = 0;
     while (!CheckTub(s)) {
@@ -25,46 +25,40 @@ int FindNum() {
             s = FindTubs(s);
         }
         if (s == '-') {
-            flagMinus = 1;
-            s = FindTubs(' ');
+            s = getchar();
+            if (s >= '0' && s <= '9'){
+                flagMinus = 1;
+            } else {
+                s = FindTubs(s);
+            }
         }
         firstNum = -1;
-        while (s > 47 && s < 58) {
+        while (s >= '0' && s <= '9') {
             if (firstNum == -1) {
                 firstNum++;
+                *sum = 0;
             }
-            firstNum = firstNum * 10 + s - 48;
+            *sum += s - '0';
+            firstNum = firstNum * 10 + s - '0';
             s = getchar(); 
         }
     }
     return (firstNum < 0) ? -1 : (flagMinus) ? -firstNum * 2 : firstNum * 2;
 }
 
-int Sum(int num) {
-    int sum = 0;
-    if (num < 0) {
-        num *= -1;
-    }
-    while (num > 9) {
-        sum += num - (num / 10) * 10;
-        num /= 10;
-    }
-    return sum + num;
-}
-
-int FindSecondToLast(int first, int second) {
+int FindSecondToLast(int first, int second, int sumFirst, int sumSecond) {
     int flag = 1;
     int firstCheck, secondCheck;
     while (1) {
         if (flag) {
-            firstCheck = FindNum();
+            firstCheck = FindNum(&sumFirst);
             if (firstCheck == -1) {
                 break;
             }
             first = firstCheck;
             flag = 0;
         } else {
-            secondCheck = FindNum();
+            secondCheck = FindNum(&sumSecond);
             if (secondCheck == -1) {
                 break;
             }
@@ -72,29 +66,34 @@ int FindSecondToLast(int first, int second) {
             flag = 1;
         }
     }
+    if (flag) {
+        printf("\nSum:%d", sumFirst);
+    } else {
+        printf("\nSum:%d", sumSecond);
+    }
     return (flag) ? first : second;
 }
 
 int SecondToLastNumber() {
-    int firstNum, secondNum;
-    firstNum = FindNum();
+    int firstNum, secondNum, sumFirst = 0, sumSecond = 0;
+    firstNum = FindNum(&sumFirst);
     if (firstNum == -1) {
         printf("\nno decimal numbers\n");
         return -1;
     }
-    secondNum = FindNum();
+    secondNum = FindNum(&sumSecond);
     if (secondNum == -1) {
         firstNum /= 2;
         printf("\none decimal numbers:%d\n", firstNum);
         return -1;
     }
-    return FindSecondToLast(firstNum, secondNum); 
+    return FindSecondToLast(firstNum, secondNum, sumFirst, sumSecond); 
 }
 
 int main(void) {
     int anser = SecondToLastNumber() / 2;
     if (anser != 0) {
-        printf("\nNumber: %d Sum: %d\n", anser, Sum(anser));
+        printf("\nNumber:%d\n", anser);
     }
 }
 
