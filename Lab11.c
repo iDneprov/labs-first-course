@@ -92,6 +92,7 @@ void Lab11(void) {
                             }
                             
                             lastNum = tmpLastNum;
+                            tmpLastNum = 0;
                                 
                             break;
                         }
