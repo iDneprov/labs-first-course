@@ -13,7 +13,7 @@ unsigned int CharToSet(char c) {
 }
 
 int main(void) {
-    int i, k = 0, flag = 0, eof_flag = 0;
+    int k = 0, flag = 0, eof_flag = 0;
     char c;
     unsigned int ans_set = 0;
     while (1) {
