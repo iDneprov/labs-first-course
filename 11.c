@@ -26,7 +26,7 @@ int FindNum(int* sum) {
         }
         if (s == '-') {
             s = getchar();
-            if (s >= '0' && s <= '9'){
+            if (s >= '0' && s <= '9') {
                 flagMinus = 1;
             } else {
                 s = FindTubs(s);
