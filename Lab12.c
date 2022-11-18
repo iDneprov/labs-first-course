@@ -36,11 +36,18 @@ void PrintNewNum(char num) {
 
 void Lab12(char num) {
     while (num != EOF) {     
+        if (num == ' ') {
+            printf(" ");
+            num = getchar();
+        }
+
         if (num == '-') {
             printf("-");
             num = getchar();
         }
         PrintNewNum(num);
+
+        
         
         num = getchar();
     }   
