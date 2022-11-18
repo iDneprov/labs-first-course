@@ -13,7 +13,7 @@ unsigned long long int CharToSet(char s) {
 }
 
 int Checker(unsigned long long int set) {
-    return (set == (set & (SIBILANTS | EXCEPTIONS)) && set != (set & EXCEPTIONS));
+    return (set == (set & (SIBILANTS | EXCEPTIONS)));
 }
 int FindOnlyHissing() {
     char s = getchar(), step = ' ';
