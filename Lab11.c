@@ -21,7 +21,6 @@ void Lab11(void) {
         if ((i == 1 && isdigit(symb)) || symb == '-' || symb == ' ' || (symbLast == ' ' && isdigit(symb))) {        
             //printf("\nsymb_if == %c\n", symb);
             if (isdigit(symb) || symb == '-') {
-                
                 if (statusFirst == 0) {
                     if (symb == '-')
                         ++statusMinus;
@@ -36,8 +35,7 @@ void Lab11(void) {
                         
                         if (isdigit(symb)) {    
                             firstNum = firstNum * 10 + (symb - '0');
-                        }
-                        else {                         
+                        } else {                         
                             //printf("\nsymb_first == %c\n", symb);
                             
                             if (symb == EOF) {
@@ -62,8 +60,7 @@ void Lab11(void) {
                         firstNum = -1 * firstNum; 
                         statusMinus = 0;
                     }
-                }        
-                else {
+                } else {
                     if (symb == '-')
                         ++statusMinus;
                     
@@ -76,8 +73,7 @@ void Lab11(void) {
                         //printf("\nsymb_in_last== %c\n", symb);
                         if (isdigit(symb)) { 
                             tmpLastNum = tmpLastNum * 10 + (symb - '0');
-                        }
-                        else {
+                        } else {
                             //printf("\nsymb_last == %c\n", symb);
 
                             if (symb == EOF) {
