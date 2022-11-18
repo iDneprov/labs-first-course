@@ -18,7 +18,7 @@ char FindTubs(char sLast) {
 
 int FindNum(int* sum) {
     char s = FindTubs(' ');
-    int firstNum = -2, flagMinus = 0;
+    int firstNum = -2, flagMinus = 0, sumSave = *sum;
     while (!CheckTub(s)) {
         flagMinus = 0;
         if (firstNum != -2) {
@@ -26,7 +26,7 @@ int FindNum(int* sum) {
         }
         if (s == '-') {
             s = getchar();
-            if (s >= '0' && s <= '9') {
+            if (s >= '0' && s <= '9'){
                 flagMinus = 1;
             } else {
                 s = FindTubs(s);
@@ -43,7 +43,11 @@ int FindNum(int* sum) {
             s = getchar(); 
         }
     }
-    return (firstNum < 0) ? -1 : (flagMinus) ? -firstNum * 2 : firstNum * 2;
+    if (firstNum < 0) {
+        *sum = sumSave;
+        return -1;
+    }
+    return (flagMinus) ? -firstNum * 2 : firstNum * 2;
 }
 
 int FindSecondToLast(int first, int second, int sumFirst, int sumSecond) {
