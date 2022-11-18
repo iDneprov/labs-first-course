@@ -36,8 +36,8 @@ void PrintNewNum(char num) {
 
 void Lab12(char num) {
     while (num != EOF) {     
-        if (num == ' ') {
-            printf(" ");
+        if (num == '\n' || num == ' ') {
+            printf("\n");
             num = getchar();
         }
 
@@ -47,8 +47,7 @@ void Lab12(char num) {
         }
         PrintNewNum(num);
 
-        
-        
+
         num = getchar();
     }   
 }
