@@ -2,90 +2,54 @@
 #include <assert.h>
 #include <stdbool.h>
 
-int LenNum(int num) {
-    int len = 0;
-    while (num >= 1) {
-        num = num / 2;
+void PrintNewNum(char num) {
+    if (num == '0')
+        printf("0000");
 
-        ++len;    
-    }
+    if (num == '1')
+        printf("0001");
 
-    return len;
+    if (num == '2')
+        printf("0010");
+
+    if (num == '3')
+        printf("0011");
+
+    if (num == '4')
+        printf("0100");
+
+    if (num == '5')
+        printf("0101");
+
+    if (num == '6')
+        printf("0110");
+
+    if (num == '7')
+        printf("0111");
+
+    if (num == '8')
+        printf("1000");
+
+    if (num == '9')
+        printf("1001");
 }
 
-bool TestLenNum(void) {
-    if (LenNum(2) != 2)
-        return false;
-    
-    if (LenNum(5) != 3)
-        return false;
-
-    return true;
-}
-
-void MassivInit(int massiv[], int n, double d) {
-  assert(massiv != 0);
-  
-  for (int i = 0; i < n; i++) {
-    assert(i < n);
-    
-    massiv[i] = d*i;
-  }
-}
-
-void Lab12(int num) {
-    assert(num >= 0);
-    
-    if (TestLenNum()) {
-        int len = LenNum(num);
-        
-        int result[len];
-        MassivInit(result, len, 0);
-
-        int tmpMas[len];
-        MassivInit(tmpMas, len, 0);
-
-        int iExternal = 0;
-        while (true) {
-            if (num == 0) {
-                int j = len - 1; 
-
-                for(int iInterior = 0; iInterior < len; ++iInterior) {
-                    result[iInterior] = tmpMas[j];
-
-                    //printf("tmpMas[%d] = %d\n", j, tmpMas[j]);
-                    //printf("result[%d] = %d\n", iInterior, result[iInterior]);
-                    
-                    --j;
-                }
-                
-                break;
-            }
-        
-            tmpMas[iExternal] = num % 2;
-            num = num / 2;
-
-            //printf("num = %d\n", num);
-            //printf("tmpMas[%d] = %d\n", iExternal, tmpMas[iExternal]);
-            
-            ++iExternal;      
+void Lab12(char num) {
+    while (num != EOF) {     
+        if (num == '-') {
+            printf("-");
+            num = getchar();
         }
-    
+        PrintNewNum(num);
         
-        for (int i = 0; i < len; ++i) {
-            printf("%d", result[i]);
-        }    
-        printf("\n");
-    }
-    else
-        printf("Жопа");
+        num = getchar();
+    }   
 }
 
 int main(void) {    
-    Lab12(2);
-    Lab12(5);
-    Lab12(100);
-    //Lab12(-2);
+    char num = 'a';
+    
+    Lab12(num);
     
     return 0;
 }
