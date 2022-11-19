@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 
 long double Func(long double x) {
 		return 3 * x - 4 * log(x) - 5;
 }
 
 long double Derivative(long double x) {
-		return 3 - 4/x;
+		return 3 - 4 / x;
 }
 
 long double MachineEpsilon() {
@@ -22,7 +21,7 @@ int main() {
     long double x = 0, a = 2, b = 4, oldx = 1e9;
 		int c = 0;
 		x = a;
-		while ((abs(oldx-x) > MachineEpsilon()) && (c < 30)) {
+		while ((fabs(oldx-x) > MachineEpsilon()) && (c < 30)) {
 				oldx = x;
 				x -= Func(x)/Derivative(x);
 				c++;
