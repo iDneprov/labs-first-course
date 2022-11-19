@@ -14,9 +14,13 @@ unsigned long Lab12(unsigned long n) {
 }
 
 int main(void) {
+    
+    scanf("%c",&g);
+    printf("%c", g);
+    scanf("%c",&g);
+    printf("%c", g);
     unsigned long n;   
-    scanf("%d", &n);
-    printf("%d", Lab12(n));
+
 
     return 0;
 }
