@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int Tc = 0, c;
+    int currentWord = 0, c;
     int k = 0;
     while (1) {
         c = getchar();
@@ -9,10 +9,10 @@ int main() {
             break;
         }
         if (!(c > 47 && c < 58)) {
-            if (Tc != 0) printf("0%d\n", Tc);
-            Tc = 0;
+            if (currentWord != 0) printf("0%d\n", currentWord);
+            currentWord = 0;
             continue;
         } 
-        Tc = Tc * 10 + (c - '0');
+        currentWord = currentWord * 10 + (c - '0');
     }
 }
