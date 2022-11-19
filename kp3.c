@@ -2,24 +2,24 @@
 #include <math.h>
 
 long double Pow(long double a, int n) {
-	long double res = 1;
-	while (n)
-		if (n & 1) {
-			res *= a;
-			--n;
+		long double res = 1;
+		while (n) {
+				if (n & 1) {
+						res *= a;
+						--n;
+				} else {
+						a *= a;
+						n >>= 1;
+				}
 		}
-		else {
-			a *= a;
-			n >>= 1;
-		}
-	return res;
+		return res;
 }
 
 long long Factorial(int number) {
-	if (number <= 1)
-		return 1;
-	else
-		return number * Factorial(number - 1);
+		if (number <= 1)
+				return 1;
+		else
+				return number * Factorial(number - 1);
 }
 
 long double MachineEpsilon() {
@@ -39,28 +39,28 @@ int main() {
 		printf("   Значение ряда      |  ");
 		printf("Число итераций |\n");
 		for (int i = 0; i < 69; ++i) {
-			printf("-");
+				printf("-");
 		}
 		printf("\n");
 		for (int i = 1; i < n; ++i) {
-					x = x + step;
-        	gipsin = sinh(x);
-					printf("|  %.18Lf  |  ", gipsin);
-					while (nexty > eps && c < 50) {
+				x = x + step;
+        gipsin = sinh(x);
+				printf("|  %.18Lf  |  ", gipsin);
+				while (fabs(nexty) > eps && c < 101) {
             nexty = (long double) Pow(x, 2 * c - 1) / Factorial(2 * c - 1);
 						y += nexty;
 						c++;
-        	}
-					printf("%.18Lf  |  ", y);
-					printf("%15d|\n", c);
-					c = 1;
-        	y = 0;
-					nexty = 1;
-					printf("\n");
-					for (int i = 0; i < 69; ++i) {
+        }
+				printf("%.18Lf  |  ", y);
+				printf("%15d|\n", c);
+				c = 1;
+        y = 0;
+				nexty = 1;
+				printf("\n");
+				for (int i = 0; i < 69; ++i) {
 						printf("-");
-					}
-					printf("\n");
+				}
+				printf("\n");
     }
     return 0;
 }
