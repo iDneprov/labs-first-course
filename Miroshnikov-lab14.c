@@ -17,7 +17,7 @@ int main() {
     i = n - (n / 2 + 1);
     j = n - (n / 2 + 1);
     if (n == 1) {
-        printf("%i", mas[0][0]);
+        printf("%d", mas[0][0]);
     } else {
         countoper = 2 * n - 1;
     }
