@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#define MAXN 7
+#define MAX_N 7
 
 int main(void) {
-  int mas[MAXN][MAXN];
+  int mas[MAX_N][MAX_N];
   int dir[4] = {0, 1, 0, -1};
   int n;
 
@@ -26,5 +26,5 @@ int main(void) {
     l -= p % 2;
   }
   putchar('\n');
-return 0;
+  return 0;
 }
