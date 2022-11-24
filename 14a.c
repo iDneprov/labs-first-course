@@ -24,7 +24,7 @@ void MatrixPrintElements() {
     int len = n, p = 0, i = -1, j = n - 1;
     while (len > 0) {
         for (int k = 0; k < len; k++) {
-            i += variations[(p) % 4];
+            i += variations[p % 4];
             j += variations[(p + 1) % 4];
             printf("%d ", matrix[i][j]);
         }
