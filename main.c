@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-#define MaxSize 8
+#define MAX_SIZE 8
 
 int main() {
-    int mat[MaxSize][MaxSize];
-    int dir[MaxSize] = {1, 1 , 1, 1, 1, 1, 1, 1};
+    int mat[MAX_SIZE][MAX_SIZE];
+    int dir[MAX_SIZE];
     int n, min;
     scanf("%d", &n);
     for (int i = 0; i < n; ++i) {
@@ -17,6 +17,7 @@ int main() {
                 min = mat[i][j];
             }
         }
+        dir[i] = 1;
     }
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
