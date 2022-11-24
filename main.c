@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#define MaxSize 7
+#define MAX_SIZE 7
 
 int main() {
-    int mas[MaxSize][MaxSize];
+    int mas[MAX_SIZE][MAX_SIZE];
     int n;
     int dir[4] = {-1, 0, 1, 0};
     scanf("%d", &n);
@@ -18,7 +18,7 @@ int main() {
     while (l != 0) {
         for (int k = 0; k < l; ++k) {
             i += dir[p % 4];
-            j += dir[(p+1) % 4];
+            j += dir[(p + 1) % 4];
             printf("%d ", mas[i][j]);
         }
         ++p;
