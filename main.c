@@ -75,4 +75,5 @@ int main() {
     }
     GetLine(81);
     printf("\n");
+    return 0;
 }
