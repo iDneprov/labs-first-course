@@ -15,7 +15,7 @@ int main(void) {
         prev = pres;
         pres = getchar();
 
-        if (pres == '-') {
+        if ((pres == '-') && (c == 0)) {
             m = 1;
             continue;
         }
@@ -24,16 +24,19 @@ int main(void) {
             if ((prev == ' ') && (prev == ',') && (prev == '\n') && (prev == '\t') && (prev == '\v') && (prev == '-')) {
                 c = c * 10 + (pres - '0');
                 continue;
-            };
+            }
+            if ((pres - '0' < 0) || ((pres - '0' > 9) && (pres != 'A'))) {
+                flag = 0;
+            }
             if (pres == 'A') {
-                flag = flag * 1;
                 ++cnt;
             } else if (pres >= prev) {
-                flag = flag * 1;
                 c = c * 10 + (pres - '0');
             } else {
-                flag = flag * 0;
+                flag = 0;
             }
+        } else if ((prev == ' ') || (prev == ',') || (prev == '\n') || (prev == '\t') || (prev == '\v') || (prev == '-')) {
+            continue;
         } else {
             if (flag == 1) {
                 if (m == 1) {
@@ -41,7 +44,7 @@ int main(void) {
                     m = 0;
                 }
                 if (((c != 0) && (cnt != 0)) || (cnt == 0)) {
-                    printf("%d", c);
+                    printf("%lld", c);
                 };
                 for (i = 1; i <= cnt; ++i) {
                     printf("A");
@@ -53,8 +56,8 @@ int main(void) {
                 flag = 1;
                 c = 0;
                 cnt = 0;
-            };
-        };
+            }
+        }
     }
 
     return 0;
