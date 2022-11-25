@@ -5,11 +5,11 @@
 void DeliteSameColumnsInMatrix() {
     int matrix[MAX_N][MAX_N], columns[MAX_N];
     char s = getchar();
-    int elementInFirstString = s - 48, n = 0, flag = 0, k, sign = 1;
+    int elementInFirstString = 0, n = 0, flag = 0, k, sign = 1;
     if (s == '-') {
         sign = -1;
     } else {
-        elementInFirstString = s - 48;
+        elementInFirstString = s - '0';
     }
     while (!(s == '\n' || s == EOF)) {
         s = getchar();
@@ -22,7 +22,7 @@ void DeliteSameColumnsInMatrix() {
             if (s == '-') {
                 sign = -1;
             } else {
-                elementInFirstString = elementInFirstString * 10 + s - 48;
+                elementInFirstString = elementInFirstString * 10 + s - '0';
             }
         }
     }
