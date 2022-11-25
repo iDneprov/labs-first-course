@@ -3,6 +3,7 @@
 int main(void) {
     char a, b = '\0';
     long long int c = 0;
+    int flag = 1;
 
         while (b != EOF) {
             b = getchar();
@@ -10,7 +11,8 @@ int main(void) {
             if ((b != ' ') && (b != ',') && (b != '\n') && (b != EOF) && (b != '\t') && (b != '\v')) {
                 a = b;
                 c = c * 10 + (b - '0');
-            } else {
+                flag = 1;
+            } else if (flag == 1) {
                 c = c / 10;
                 if (c != 0) {
                     printf("%c%lld", a, c);
@@ -19,6 +21,8 @@ int main(void) {
                 } else {
                     printf("%c%c", a, b);
                 }
+
+                flag = 0;
             }
         };
 
