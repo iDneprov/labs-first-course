@@ -5,15 +5,25 @@
 void DeliteSameColumnsInMatrix() {
     int matrix[MAX_N][MAX_N], columns[MAX_N];
     char s = getchar();
-    int elementInFirstString = s - 48, n = 0, flag = 0, k;
+    int elementInFirstString = s - 48, n = 0, flag = 0, k, sign = 1;
+    if (s == '-') {
+        sign = -1;
+    } else {
+        elementInFirstString = s - 48;
+    }
     while (!(s == '\n' || s == EOF)) {
         s = getchar();
         if (s == ' ' || s == '\n' || s == EOF) {
-            matrix[0][n] = elementInFirstString;
+            matrix[0][n] = sign * elementInFirstString;
             elementInFirstString = 0;
             n++;
+            sign = 1;
         } else {
-            elementInFirstString = elementInFirstString * 10 + s - 48;
+            if (s == '-') {
+                sign = -1;
+            } else {
+                elementInFirstString = elementInFirstString * 10 + s - 48;
+            }
         }
     }
     for (int i = 1; i < n; i++) {
