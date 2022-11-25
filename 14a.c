@@ -9,7 +9,7 @@ void MatrixPrintElements() {
     if (s == '-') {
         sign = -1;
     } else {
-        elementInFirstString = s - 48;
+        elementInFirstString = s - '0';
     }
     while (!(s == '\n' || s == EOF)) {
         s = getchar();
@@ -22,7 +22,7 @@ void MatrixPrintElements() {
             if (s == '-') {
                 sign = -1;
             } else {
-                elementInFirstString = elementInFirstString * 10 + s - 48;
+                elementInFirstString = elementInFirstString * 10 + s - '0';
             }
         }
     }
