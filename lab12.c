@@ -2,6 +2,7 @@
  
  
 int main() {
+ 
     int k = 0, c, d = 0, e = 0;
     while (1) {
         c = getchar();
@@ -18,9 +19,12 @@ int main() {
             k = 0;
             continue;
         }
+ 
         k = k * 10 + (c - '0');
         if ((c - '0') == 0) {
             d += 1;
         }
-    } 
+    }
+ 
+ 
 }
