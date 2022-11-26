@@ -1,24 +1,15 @@
 #include <stdio.h>
  
 int IsSign(char c) {
-    if (c == '+' || c == '-') {
-        return 1;
-    }
-    return 0;
+    return (c == '+' || c == '-');
 }
  
 int IsNum(char c) {
-    if (c <= '9' && c >= '1') {
-        return 1;
-    }
-    return 0;
+    return (c <= '9' && c >= '1');
 }
  
 int IsSpace(char c) {
-    if (c == ' ' || c == '\n' || c == '\t') {
-        return 1;
-    }
-    return 0;
+    return (c == ' ' || c == '\n' || c == '\t');
 }
  
 /* PREVSYMB
