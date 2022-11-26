@@ -8,24 +8,32 @@ int main() {
     int row = 0;
     int col = 0;
     int size = 0;
+    int minFl = 0;
     
     while ((s = getchar()) != EOF) {
         if (s >= '0' && s <= '9') {
-            d = d*10 + (s - '0');
+            d = d * 10 + (s - '0');
         } else if (s == ' ') {
+            d = minFl ? -d : d;
             m[row][col] = d;
             d = 0;
             ++col;
+            minFl = 0;
         } else if (s == '\n') {
             size = col + 1;
+            d = minFl ? -d : d;
             m[row][col] = d;
             d = 0;
             ++row;
             col = 0;
+            minFl = 0;
+        } else if (s == '-') {
+            minFl = 1;
         }
     }
     
     if (d) {
+        d = minFl ? -d : d;
         m[row][col] = d;
     }
 
