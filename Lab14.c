@@ -13,6 +13,7 @@ void FilingMatrix(int* matrix, int r, int c) {
     printf("\n");
 }
 
+/*
 bool TestFilingMatrix() {
     printf("Начало тестирования\nТестовые данные 10 10 20 20\n");
     
@@ -31,9 +32,9 @@ bool TestFilingMatrix() {
 
     return true;
 }
-
+*/
 void Lab14() {
-    assert(TestFilingMatrix() != false);
+    //assert(TestFilingMatrix() != false);
 
     printf("Начало выполнения программы\n");
     printf("Введи колличество строк и столбцов, одним числом\n");
