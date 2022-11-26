@@ -6,6 +6,7 @@ void FilingMatrix(int* matrix, int r, int c) {
     printf("Вводи элементы матрицы, мраз\n");
     printf("Введёшь криво - Я тебе пальчики секатором подровняю\n");
 
+    
     for (int i = 0; i < r; ++i) {
         for (int j = 0; j < c; ++j)
             scanf("%d", ((matrix + i * r) + j));
@@ -16,6 +17,8 @@ void FilingMatrix(int* matrix, int r, int c) {
 /*
 bool TestFilingMatrix() {
     printf("Начало тестирования\nТестовые данные 10 10 20 20\n");
+    printf("Вводи тестовые данные 10 10 20 20\n");
+    printf("Введёшь криво - Я тебе пальчики секатором подровняю\n");
     
     int checkMatrix[2][2] = {{10, 10}, {20, 20}};
     
@@ -47,27 +50,27 @@ void Lab14() {
    
     for (int j = 0; j < n; ++j) 
         printf("%d ", matrix[0][j]);
-    printf("\n");
+    //printf("\n");
 
     for (int i = 1; i < n; ++i) 
         printf("%d ", matrix[i][n - 1]);
-    printf("\n");
+    //printf("\n");
 
     for (int j = n - 2; j >= 0; --j)
         printf("%d ", matrix[n - 1][j]);    
-    printf("\n");
+    //printf("\n");
 
     for (int i = n - 2; i >= 1; --i)
         printf("%d ", matrix[i][0]);    
-    printf("\n");
+    //printf("\n");
 
     for (int j = 1; j < n - 2; ++j) 
         printf("%d ", matrix[1][j]);
-    printf("\n");
+    //printf("\n");
 
     for (int i = 1; i < (n - 1); ++i)
         printf("%d ", matrix[i][n - 2]);
-    printf("\n");
+    //printf("\n");
 
     if (n == 5) {
         for (int j = 2; j > 1; --j)
@@ -77,49 +80,49 @@ void Lab14() {
     if (n == 4 || n == 5) {
         for (int i = n - 2; i > 1; --i)
             printf("%d ", matrix[i][1]);
-        printf("\n");
+        //printf("\n");
     }
     
     if (n == 5) {
         printf("%d ", matrix[2][2]);
-        printf("\n");
+        //printf("\n");
     }
     
     if (n > 5) {
         for (int j = n - 3; j > 1; --j)
             printf("%d ", matrix[n - 2][j]); 
-        printf("\n");
+        //printf("\n");
 
         for (int i = n - 2; i > 1; --i)
             printf("%d ", matrix[i][1]);
-        printf("\n");
+        //printf("\n");
         
         for (int j = 2; j < (n - 2); ++j)
             printf("%d ", matrix[2][j]); 
-        printf("\n");
+        //printf("\n");
 
         if (n == 6) {
             for (int i = 2; i < (n - 2); ++i)
                 printf("%d ", matrix[i][n - 3]);
-            printf("\n");
+            //printf("\n");
             
             for (int j = 3; j > 1; --j)
                 printf("%d ", matrix[3][j]);
-            printf("\n");
+            //printf("\n");
         }
         
         if (n == 7) {
             for (int i = 3; i < (n - 2); ++i)
                 printf("%d ", matrix[i][n - 3]);
-            printf("pup\n");
+            //printf("\n");
             
             for (int j = n - 3; j > 1; --j)
                 printf("%d ", matrix[n - 3][j]);
-            printf("\n");
+            //printf("\n");
         
             for (int j = 2; j < 4; ++j)
                 printf("%d ", matrix[3][j]);
-            printf("\n");
+            //printf("\n");
         }    
     }
 
