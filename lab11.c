@@ -1,29 +1,131 @@
 #include <stdio.h>
  
-int main() {
-    int act = 0, c;
+int IsSign(char c) {
+    return (c == '+' || c == '-');
+}
  
-    int k = 0;
-    int a[100] = {0};
-    while (1) {
-        c = getchar();
-        if (c == EOF || c == '\n') {
-            break;
+int IsNum(char c) {
+    return (c <= '9' && c >= '1');
+}
+ 
+int IsSpace(char c) {
+    return (c == ' ' || c == '\n' || c == '\t');
+}
+ 
+/* PREVSYMB
+ * ' ' init of program
+ * '1' number
+ * 'a' alpha
+ * '_' space
+ * '-' sign
+ * 'n' num or zero
+ * '0' zero
+ */
+int main(void) {
+    char c;
+    long long a = 0;
+    char prevSymb = ' ';
+    while ((c = getchar()) != EOF) {
+        switch (prevSymb) {
+            case ' ':
+                printf("\n");
+                if (IsSign(c)) {
+                    putchar(c);
+                    prevSymb = '-';
+                } else if (IsNum(c)) {
+                    a = a * 10 + (c - '0');
+                    prevSymb = '1';
+                } else if (c == '0') {
+                    putchar(c);
+                    prevSymb = '0';
+                } else {
+                    putchar(c);
+                    prevSymb = 'a';
+                }
+                break;
+            case '_':
+                a = 0;
+                if (IsSign(c)) {
+                    putchar(c);
+                    prevSymb = '-';
+                } else if (IsNum(c)) {
+                    a = a * 10 + (c - '0');
+                    prevSymb = '1';
+                } else if (c == '0') {
+                    putchar(c);
+                    prevSymb = '0';
+                } else if (IsSpace(c)) {
+                    putchar(c);
+                    prevSymb = '_';
+                } else {
+                    putchar(c);
+                    prevSymb = 'a';
+                }
+                break;
+            case '1':
+                if (IsNum(c) || c == '0') {
+                    a = a * 10 + (c - '0');
+                    prevSymb = '1';
+                } else if (IsSpace(c)) {
+                    printf("0%lld%c", a, c);
+                    prevSymb = '_';
+                } else {
+                    printf("%lld%c", a, c);
+                    prevSymb = 'a';
+                }
+                break;
+            case 'a':
+                if (IsSpace(c)) {
+                    putchar(c);
+                    prevSymb = '_';
+                } else {
+                    putchar(c);
+                    prevSymb = 'a';
+                }
+                break;
+            case 'n':
+                if (IsNum(c) || c == '0') {
+                    a = a * 10 + (c - '0');
+                    prevSymb = 'n';
+                } else if (IsSpace(c)) {
+                    printf("0%lld%c", a, c);
+                    prevSymb = '_';
+                } else {
+                    printf("%lld%c", a, c);
+                    prevSymb = 'a';
+                }
+                break;
+            case '0':
+                if (IsSpace(c)) {
+                    printf("0%c", c);
+                    prevSymb = '_';
+                } else if (c == '0') {
+                    printf("0");
+                    prevSymb = '0';
+                } else if (IsNum(c)) {
+                    a = a * 10 + (c - '0');
+                    prevSymb = '1';
+                } else {
+                    putchar(c);
+                    prevSymb = 'a';
+                }
+                break;
+ 
+            case '-':
+                if (IsNum(c)) {
+                    a = a * 10 + (c - '0');
+                    prevSymb = 'n';
+                } else if (IsSpace(c)) {
+                    putchar(c);
+                    prevSymb = '_';
+                } else if (c == '0') {
+                    putchar(c);
+                    prevSymb = '0';
+                } else {
+                    putchar(c);
+                    prevSymb = 'a';
+                }
         }
-        if (!(c > 47 && c < 58)) {
-            if (act != 0) a[k++] = act;
-            act = 0;
-            continue;
-        }
- 
-        act = act * 10 + (c - '0');
     }
- 
-    for (int i = 0; i < 100; i++) {
-        int elem = a[i];
-        if (elem != 0) {
-            printf("0%d\n", elem);
-        } else { break; }
-    }
- 
+    return 0;
 }
