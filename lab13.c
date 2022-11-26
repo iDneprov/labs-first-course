@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int main() {
-    
+int main() {    
     int n = 0;
     char c = 0;
     int vowel = 0b11111;
