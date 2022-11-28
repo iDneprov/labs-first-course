@@ -16,7 +16,6 @@ long double MachineEpsilon() {
 int main() {
     long double x;
     long double x0 = (2 + 3) / 2, diff = 1, eps = MachineEpsilon();
-    int n = 0;
     printf("alpha(x) = (ln(1 + x) + 3)^0.5\n");
     while (Abs(diff) >= eps) {
         x = powl(log(1 + x0) + 3, 0.5);
