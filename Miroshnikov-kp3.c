@@ -27,9 +27,10 @@ long double Pow(long double x, long double n, long double i) {
     else if (n == 1) {
         return x;
     }
-    else if (n >= 1) {
+    else if (n > 1) {
         return x * i;
     }
+    return 0;
 }
 
 int main() {
