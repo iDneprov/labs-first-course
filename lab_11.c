@@ -49,7 +49,9 @@ int main(void) {
                 for (i = 1; i <= cnt; ++i) {
                     printf("A");
                 };
-                printf("%c", pres);
+                if (pres != EOF) {
+                    printf("%c", pres);
+                };
                 c = 0;
                 cnt = 0;
             } else {
