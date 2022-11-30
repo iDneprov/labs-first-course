@@ -16,11 +16,13 @@ int main(void) {
                 c = c / 10;
                 if (c != 0) {
                     printf("%c%lld", a, c);
-                    printf("%c", b);
                     c = 0;
                 } else {
-                    printf("%c%c", a, b);
-                }
+                    printf("%c", a);
+                };
+                if (b != EOF) {
+                    printf("%c", b);
+                };
 
                 flag = 0;
             }
