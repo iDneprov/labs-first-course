@@ -44,9 +44,9 @@ int main() {
     step = (b - a) / iter;
     printf("Machine epsilon for long double = %.8Le\n", e);
     printf("Taylor series values table for f(x) = (2x-3)/(x-1)^2\n");
-    printf(" ---------------------------------------------------------------\n");
-    printf("| x \t| sum of line\t\t| function\t\t| iter  |\n");
-    printf(" -------+-----------------------+-----------------------+-------\n");
+    printf(" -----------------------------------------------------------------\n");
+    printf("| x \t| sum of line\t\t | function\t\t  | iter |\n");
+    printf(" -------+------------------------+------------------------+-------\n");
     for (long double i = a; i <= b; i += step) {
         x = i;
         for (int n = 0; n < 999; ++n) {
@@ -60,10 +60,14 @@ int main() {
                 break;
             }
         }
-        printf("| %.3Lf\t| %.19Lf| %.19Lf| %d\t|\n", i, result, F(i), count);
+        if (Abs((int)result) >= 10) {
+            printf("| %.3Lf\t| %.19Lf| %.19Lf| %d\t |\n", i, result, F(i), count);
+        } else {
+            printf("| %.3Lf\t| %.19Lf | %.19Lf | %d\t |\n", i, result, F(i), count);
+        }
         result = 0;
         count = 0;
     }
-    printf(" ----------------------------------------------------------------\n");
+    printf(" -----------------------------------------------------------------\n");
     return 0;
 }
