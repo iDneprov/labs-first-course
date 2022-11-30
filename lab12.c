@@ -5,7 +5,7 @@ int Abs(int s) {
 }
 
 int main(void) {
-    int a = 0, d1 = 11 , d2 = 11;
+    int d1 = 11, d2 = 11;
     char s;
     s = getchar();
     while (1) {
@@ -23,9 +23,8 @@ int main(void) {
                     printf("%d", Abs(d1 - d2));
                     d1 = d2;
                     d2 = 11;
-                }
-        }
-        else {
+            }
+        } else {
             return 0;
         }
         s = getchar();
