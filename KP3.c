@@ -71,7 +71,7 @@ int main() {
         for (; n <= 100 && Abs(next) > e; n++) {
             summ += next;
             stepen *= (double)x;
-            next = n * (n + 2) * (long double)stepen;
+            next = (n + 1) * (n + 3) * (long double)stepen;
         }
         printf("| %.3Lf | %.20Lf | %.20Lf | %d", x, summ, fX, n);
         double length = Length(n);
