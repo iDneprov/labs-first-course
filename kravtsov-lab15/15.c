@@ -4,7 +4,7 @@
 int findSumOfRow (int *m, int row, int size) {
     int sum = 0;
     for (int i = 0; i < size; ++i) {
-        sum = sum + m[row*size + (MX-size)*row + i];
+        sum = sum + m[row * size + (MX - size) * row + i];
     }
     return sum;
 }
@@ -53,12 +53,12 @@ int main() {
     if (d) {
         d = minFl ? -d : d;
         if (d > mx) {
-                numRowMax = row;
-                mx = d;
+            numRowMax = row;
+            mx = d;
         }
         m[row][col] = d;
     }
 
-    printf("\nSum: %d", findSumOfRow(&m[0][0],numRowMax,size));
+    printf("\nSum: %d", findSumOfRow(&m[0][0], numRowMax, size));
     return 0;
 }
