@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define MX 8
+#define MIN -32767
 
 int findSumOfRow (int *m, int row, int size) {
     int sum = 0;
@@ -18,7 +19,7 @@ int main() {
     int size = 0;
     int minFl = 0;
     int numRowMax = -1;
-    int mx = -32767;
+    int mx = MIN;
     
     while ((s = getchar()) != EOF) {
         if (s >= '0' && s <= '9') {
