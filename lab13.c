@@ -23,7 +23,7 @@ int main(void) {
         symb = getwchar();
         set_of_letters = set_of_letters | MakeSet(symb);
         if ((symb == ' ' || symb == '\n' || symb == ',' || symb == WEOF) && (set_of_letters > 0)) {
-            if (((set_of_letters & vowels_type_2) != 0) && ((set_of_letters & other_vowels) == 0)) {
+            if ((set_of_letters & other_vowels) == 0) {
                 flag = 1;
             }
             set_of_letters = 0;
@@ -38,3 +38,4 @@ int main(void) {
         wprintf(L"\nNo\n");
     }
 }
+
