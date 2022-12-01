@@ -1,9 +1,6 @@
 #include <stdio.h>
 
-const int ORDTAB = 9;
-const int ORDEOS = 10;
-
-void PrintAnswer(int kolvo) {
+void print_answer(int kolvo) {
     int kolvocopy = kolvo;  
     int razryady = 0;
     int first = 1;
@@ -30,32 +27,25 @@ void PrintAnswer(int kolvo) {
     }
 }
 
-int AllowedSymbol(int symbol) {
-    if (((symbol >= '0') && (symbol <= '9')) || ((symbol >= 'A') && (symbol <= 'Z')) || 
-            ((symbol >= 'a') && (symbol <= 'z')) || (symbol == '_')) {
-                return 1;
-    }
-    return 0;
+int allowed_symbol (int symbol) {
+    return ((symbol >= '0') && (symbol <= '9')) || ((symbol >= 'A') && (symbol <= 'Z')) || 
+            ((symbol >= 'a') && (symbol <= 'z')) || (symbol == '_');
 }
 
-int AllowedFirstSymbol(int symbol) {
-    if (((symbol >= 'A') && (symbol <= 'Z')) || 
-            ((symbol >= 'a') && (symbol <= 'z')) || (symbol == '_')) {
-                return 1;
-    }
-    return 0;
+int allowed_first_symbol (int symbol) {
+    return ((symbol >= 'A') && (symbol <= 'Z')) || 
+            ((symbol >= 'a') && (symbol <= 'z')) || (symbol == '_');
+
 }
 
-int Rasdelitel(int symbol) {
-    if ((symbol == ' ') || (symbol == ',') || (symbol == ORDTAB) || (symbol == ORDEOS)) {
-        return 1;
-    }
-    return 0;
+int rasdelitel(int symbol) {
+    return (symbol == ' ') || (symbol == ',') || (symbol == '\t') || (symbol == '\n');
 }
 
 int main() {
     int current, kolvo;
     int  flag = -1;
+    kolvo = 0;
     while (1) {
         current = getchar();
         if (current == EOF) {
@@ -65,8 +55,8 @@ int main() {
             break;
         }
         if (flag == -1) {
-           if (!AllowedFirstSymbol(current)) {
-                if (Rasdelitel(current)) {
+           if ( ! allowed_first_symbol(current)) {
+                if ( rasdelitel(current) ) {
                     flag = 0;
                 } else {
                     flag = 2;
@@ -76,8 +66,8 @@ int main() {
             }
         }
         if (flag == 0) {
-            if (!AllowedFirstSymbol(current)) {
-                if (Rasdelitel(current)) {
+            if (! allowed_first_symbol(current)) {
+                if ( rasdelitel(current) ) {
                     flag = 0;
                 } else {
                     flag = 2;
@@ -87,8 +77,8 @@ int main() {
             }
         }
         if (flag == 1) {
-            if (!AllowedSymbol(current)) {
-                if (Rasdelitel(current)) {
+            if (! allowed_symbol(current)) {
+                if (rasdelitel(current)) {
                     flag = 0;
                     ++kolvo;
                 } else {
@@ -99,12 +89,12 @@ int main() {
             }
         }
         if (flag == 2) {
-            if (!Rasdelitel(current)) {
+            if (! rasdelitel(current)) {
                 flag = 2;
             } else {
                 flag = 0;
             }
         }
     }
-    PrintAnswer(kolvo);
+    print_answer(kolvo);
 }
