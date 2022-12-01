@@ -7,22 +7,22 @@ unsigned int CharToSet (int c) {
 }
 
 int main(void) {
-    unsigned int Fset = 0;
-    unsigned int Sset = 0;
+    unsigned int fSet = 0;
+    unsigned int sSet = 0;
     int first = 0, f = 0, c = 0;
 
     while (c != EOF) {
         c = getchar();
-        if (c != '\n' && c != '\t' && c !=',' && c != ';' && c != ' ' && c != EOF) {
+        if (c != '\n' && c != '\t' && c !=',' && c != ' ' && c != EOF) {
             if (first == 0) {
-                Fset |= CharToSet(c);
+                fSet |= CharToSet(c);
             } else {
-                Sset |= CharToSet(c);
+                sSet |= CharToSet(c);
             }
         } else {
             if (first == 0) {
                 first = 1;
-            } else if (Fset != Sset) {
+            } else if (fSet != sSet) {
                 printf("yes\n");
                 f = 1;
                 break;
