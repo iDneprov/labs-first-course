@@ -5,29 +5,31 @@ int Abs(int s) {
 }
 
 int main(void) {
-    int d1 = 11, d2 = 11;
+    int d1 = 11 , d2 = 11;
     char s;
     s = getchar();
     while (1) {
         putchar(s);
-        if (s != EOF && s != '\n') {
+        if (s != EOF) {
             if (s >= '0' && s <= '9') {
                 if (d1 == 11) {
                     d1 = s - '0';
-                }
-                else {
+                } else {
                     d2 = s - '0';
                 }
             }
                 if (d2 != 11) {
-                    printf("%d", Abs(d1 - d2));
+                    printf(" %d", Abs(d1 - d2));
                     d1 = d2;
                     d2 = 11;
             }
         } else {
             return 0;
         }
+        if (s == '\n') {
+            d1 = 11; 
+            d2 = 11;
+        }
         s = getchar();
     }
-    return 0;
 }
