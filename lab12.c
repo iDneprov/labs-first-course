@@ -5,7 +5,7 @@ int Abs(int s) {
 }
 
 int main(void) {
-    int d1 = 11 , d2 = 11;
+    int d1 = 11, d2 = 11;
     char s;
     s = getchar();
     while (1) {
