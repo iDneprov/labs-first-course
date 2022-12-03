@@ -4,7 +4,6 @@
 #define NUMBER 0
 #define END 1
 #define ERR 3
-#define EOS 10
 
 void PrintERR() {
     putchar('E');
@@ -24,18 +23,16 @@ int Pow(int base, int indicator) {
 }
 
 void PrintAnswer(int num, char sign) {
-    //printf ("%d \n", num);
     if (num == 0) {
         for (int i = 0; i < 8; ++i) {
             putchar('0');
         }
-        putchar(EOS);
+        putchar('\n');
     } else {
         int deg = 6;
         if (sign == '+') {
             putchar('0');
             while (deg > -1) {
-                //printf ("%d, %d, %d \n", num, deg, Pow(2, deg));
                 if (num - Pow(2, deg) >= 0) {
                     putchar('1');
                     num -= Pow(2, deg);
@@ -52,7 +49,7 @@ void PrintAnswer(int num, char sign) {
                 if (num - Pow(2, deg) >= 0) {
                     putchar('0');
                     num -= Pow(2, deg);
-                    deg -=1;
+                    deg -= 1;
                 } else {
                     putchar('1');
                     deg -= 1;
@@ -75,7 +72,7 @@ int AddNumber(int num, char symb, int len) {
 }
 
 int Mode(int mode, char symb) {
-    if (mode == END)  {
+    if (mode == END) {
         if (symb == '-') {
             return MINUS;
         } else if ((symb >= '0') && (symb <= '9')) {
@@ -86,7 +83,7 @@ int Mode(int mode, char symb) {
     } else if ((mode == NUMBER) || (mode == MINUS)) {
         if ((symb >= '0') && (symb <= '9')) {
             return NUMBER;
-        } else if ((symb == EOS) && (mode != MINUS)) {
+        } else if ((symb == '\n') && (mode != MINUS)) {
             return END;
         } else {
             return ERR;
@@ -97,7 +94,7 @@ int Mode(int mode, char symb) {
 
 int main() {
     char symb, sign = '+';
-    int num, mode = END, number_length = 0;
+    int num, mode = END, numberLength = 0;
     while (1) {
         symb = getchar();
         if (symb == EOF) {
@@ -107,8 +104,8 @@ int main() {
         if (mode == MINUS) {
             sign = '-';
         } else if (mode == NUMBER) {
-            num = AddNumber(num, symb, number_length);
-            number_length += 1;
+            num = AddNumber(num, symb, numberLength);
+            numberLength += 1;
         } else if (mode == END){
             if (num < 128) {
                 PrintAnswer(num, sign);
@@ -119,7 +116,7 @@ int main() {
             }
         } 
         if (mode == ERR) {
-            while (symb != EOS) {
+            while (symb != '\n') {
                 symb = getchar();
             }
             PrintERR();
