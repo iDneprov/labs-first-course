@@ -31,8 +31,7 @@ int main(void) {
         if (s == EOF || s == '\n') {
             if (flag) {
                 printf("Yes\n");
-            }
-            else {
+            } else {
                 printf("No\n");
             }
         }
