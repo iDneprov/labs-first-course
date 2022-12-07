@@ -1,0 +1,45 @@
+// 17 вариант 
+#include <stdio.h>
+#include <math.h>
+
+const long double l = 0l;
+const long double r = 2l;
+
+long double Abs(long double x) {
+    if(x < 0) {
+        return -x;
+    }
+    return x;
+}
+long double MachineEps() {
+    long double e = 1.0l;
+    while (1.0l + e * 0.5l > 1.0l) {
+        e *= 0.5l;
+    }
+    return e;
+}
+
+long double F(long double x) {
+    return 0.25l * x * x * x + x - 1.2502;
+}
+
+long double FDerivative(long double x, long double eps) {
+    return (F(x) - F(x + eps)) / eps;
+}
+
+int main() {
+
+    long double eps = MachineEps();
+    long double x = (l + r) * 0.5l;
+    long double xn;
+
+    while(1){
+        xn = x + F(x) / FDerivative(x, eps);
+        if(Abs(xn - x) < eps){
+            break;
+        }
+        x = xn;
+    }
+    printf("%Lf", x);
+    return 0;
+}
