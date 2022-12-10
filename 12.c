@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <assert.h>
-#include <stdbool.h>
+
 
 void PrintNewNum(char num) {
     if (num == '0')
