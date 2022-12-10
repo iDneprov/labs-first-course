@@ -22,7 +22,6 @@ int main(void) {
         for (int j = 0; j != n; ++j) {
             if (matrix[i][j] == p) {
                 dir[i] = 1;
-                break;
             }
             if (i == index) {
                 mi[j] = matrix[i][j];
