@@ -15,11 +15,11 @@ int main(){
                 break;
             case 1:
                 if ((c != ' ' && c != '\t' && c != ','&& c != '.') && c >= '0' && c <= '9'){n = n * 10 + (int)(c-'0');}
-                else {if(n > INT_MAX){printf("%ld\n", n);}n = 0;sost = 0;}
+                else {if (n > INT_MAX){printf("%ld\n", n);}n = 0;sost = 0;}
                 break;
             case 2:
                 if ((c != ' ' && c != '\t' && c != ','&& c != '.') && c >= '0' && c <= '9'){n = n * 10 + (int)(c-'0');}
-                else {if(n > INT_MAX + 1){printf("%ld\n", -n);}n = 0;sost = 0;}
+                else {if (n > INT_MAX + 1){printf("%ld\n", -n);}n = 0;sost = 0;}
                 break;
         }
     }
