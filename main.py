@@ -75,7 +75,7 @@ def winner(j):
     if j <= len(playArea):
         for i in range(j, xBtn*yBtn):
             if playArea[i] == 0:
-                btn[i].config(state= NORMAL, text= '☺')
+                btn[i].config(state= NORMAL, text= '+')
                 btn[i].flash()
                 tk.bell()
                 btn[i].config(text= ' ', state= DISABLED)
