@@ -3,7 +3,7 @@
 
 #define RANGE_BEGIN 0.0l
 #define RANGE_END 2.0l
-#define STEP 0.25l
+#define STEP 0.05l
 
 long double MachineEpsilon() {
     long double e = 1.0l;
@@ -22,9 +22,9 @@ int main(void) {
     long double e = MachineEpsilon(), x, part;
     printf("Machine epsilon for long double = %.8Le\n", e);
     printf("Table of values of Taylor series and standard function for x*(3 - x) / ((1 - x)^ 3)\n");
-        printf("-------------------------------------------------\n");
-	    printf("| x \t| sum of line\t | function\t | iter |\n");
-	    printf("--------+----------------+---------------+-------\n");
+        printf("-------------------------------------------------------------------------\n");
+	    printf("| x \t| sum of line\t\t   | function\t\t     | iter \t|\n");
+	    printf("--------+--------------------------+---------------------- --+-----------\n");
     for (long double i = RANGE_BEGIN; i <= RANGE_END; i += STEP) {
         int n = 1;
         long double sum = 0.0;
@@ -36,8 +36,8 @@ int main(void) {
                 break;
             }  
         }
-        printf("| %.3Lf | %.10Lf  | %.10Lf | %d \t|\n", x, sum, F(x), n);
+        printf("| %.3Lf | %.20Lf  | %.20Lf | %d \t|\n", x, sum, F(x), n);
     }
-    printf("-------------------------------------------------\n");
+    printf("-------------------------------------------------------------------------\n");
     return 0;
 }
