@@ -5,7 +5,7 @@
 #define RANGE_END 1.005l 
 #define STEP 0.005l 
  
-long double ABS(long double x) { 
+long double Abs(long double x) { 
     return (x > 0) ? x : -x; 
 } 
 
@@ -49,7 +49,7 @@ int main(void) {
             } else { 
                 sum -= stepX; 
             } 
-            if (ABS(stepX) < e) { 
+            if (Abs(stepX) < e) { 
                 break; 
             } 
         } 
