@@ -1,44 +1,32 @@
 #include <stdio.h>
+#include <ctype.h>
+#define VOWELS (1u << ('a'-'a') | 1u<<('e'- 'a') | 1u<<('i'- 'a') | 1u<<('o'- 'a') | 1u<<('u'- 'a') | 1u<<('y'- 'a'))
 
-int main() {    
-    int n = 0;
-    char c = 0;
-    int vowel = 0b11111;
-    int word = 0;
-    printf("Input: ");
-    do {
-        c = getchar();
-        if (c == 'a' || c == 'A') {
-            word |= 0b00001;
-        } else if (c == 'e' || c == 'E') {
-            word |= 0b00010;
-        } else if (c == 'i' || c == 'I') {
-            word |= 0b00100;
-        } else if (c == 'o' || c == 'O') {
-            word |= 0b01000;
-        } else if (c == 'u' || c == 'U') {
-            word |= 0b10000;
-        } else {
-            if (word != 0)
-                vowel &= word;
-            word = 0;
-        }
-    } while (c != '\n');
-    printf("Output: ");
-    if (vowel & 0b00001) {
-        printf("a ");
-    }
-    if (vowel & 0b00010) {
-        printf("e ");
-    }
-    if (vowel & 0b00100) {
-        printf("i ");
-    }
-    if (vowel & 0b01000) {
-        printf("o ");
-    }
-    if (vowel & 0b10000) {
-        printf("u ");
-    }
+unsigned int char_to_set(char c){
+  c  = tolower(c);
+  if ((c < 'a') || (c > 'z')){
     return 0;
+  }
+  else {
+    return 1u << (c - 'a');
+  }
+}
+int main(void){
+    printf("Входная строка:\n");
+  char glas, c;
+  unsigned int letters_set = 0; 
+  unsigned int end_set = 1u<<('a'-'a') | 1u<<('e'- 'a') | 1u<<('i'- 'a') | 1u<<('o'- 'a') | 1u<<('u'- 'a') | 1u<<('y'- 'a');
+  while((c = getchar()) != EOF){
+    letters_set = (char_to_set(c) | letters_set) & VOWELS;
+    if (((c == ' ') || (c == '\t')  || (c == '\n') || (c == ',')) && (letters_set != 0)){
+      end_set = end_set & letters_set;
+      letters_set = 0;
+    }
+  }
+  for (glas = 'a'; glas <= 'z'; glas++){
+    if (((char_to_set(glas) & VOWELS) != 0) && ((char_to_set(glas) & end_set) != 0)){
+      printf("\nГласная, входящая в состав всех слов: %c \n", glas);
+    }
+  }
+  return 0;
 }
