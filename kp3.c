@@ -27,10 +27,10 @@ int main() {
 		nexty = x;
 		printf("|  %.18Lf  |  ", gipsin);
 		while (nexty > eps && c < 101) {
-       	    nexty = nexty * x * x / ((2 * c) * (2 * c + 1));
+       	    	nexty = nexty * x * x / ((2 * c) * (2 * c + 1));
 			y += nexty;
 			c++;
-       	}
+       		}
 		printf("%.18Lf  |  ", y);
 		printf("%15d|", c);
         printf("%12Lf|\n", x);
