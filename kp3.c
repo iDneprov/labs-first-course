@@ -43,24 +43,24 @@ int main() {
 		}
 		printf("\n");
 		for (int i = 1; i < n; ++i) {
-					x = x + step;
+			x = x + step;
         	gipsin = sinh(x);
-					printf("|  %.18Lf  |  ", gipsin);
-					while (nexty > eps && c < 50) {
-            nexty = (long double) Pow(x, 2 * c - 1) / Factorial(2 * c - 1);
-						y += nexty;
-						c++;
+			printf("|  %.18Lf  |  ", gipsin);
+			while (nexty > eps && c < 50) {
+            	nexty = (long double) Pow(x, 2 * c - 1) / Factorial(2 * c - 1);
+				y += nexty;
+				c++;
         	}
-					printf("%.18Lf  |  ", y);
-					printf("%15d|\n", c);
-					c = 1;
+			printf("%.18Lf  |  ", y);
+			printf("%15d|\n", c);
+			c = 1;
         	y = 0;
-					nexty = 1;
-					printf("\n");
-					for (int i = 0; i < 69; ++i) {
-						printf("-");
-					}
-					printf("\n");
+			nexty = 1;
+			printf("\n");
+			for (int i = 0; i < 69; ++i) {
+				printf("-");
+			}
+			printf("\n");
     }
     return 0;
 }
