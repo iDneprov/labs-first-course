@@ -10,6 +10,7 @@ int main(){
     n = n / 10;
     k++;
   }
+  
   while (k < a){
     if (s >= minn && s <= maxn) s = s * 10;
     else f = !f;
