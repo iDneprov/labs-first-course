@@ -1,0 +1,370 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+void Generation(int matrix[9][9]) {
+	int v[9] = { 1, 7, 4, 9, 6, 3, 8, 5, 2 };
+	int i, j, p;
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			p = v[i] + j - 1;
+			if (p > 8) {
+				p -= 9;
+			}
+			matrix[i][p] = j + 1;
+		}
+	}
+}
+
+void Printf(int matrix[9][9]) {
+	int i, j;
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			cout << matrix[i][j] << ' ';
+		}
+		cout << '\n';
+	}
+}
+
+void Transposition(int matrix[9][9]) {
+	int i, j;
+	for (i = 0; i < 8; ++i) {
+		for (j = i + 1; j < 9; ++j) {
+			swap(matrix[i][j], matrix[j][i]);
+
+		}
+	}
+}
+
+void Swap_Colums_Small(int p, int a, int b, int matrix[9][9]) {
+	int i;
+	if (a == b) {
+		++b;
+	}
+	p %= 3;
+	a %= 3;
+	b %= 3;
+	a += p * 3;
+	b += p * 3;
+
+	for (i = 0; i < 9; ++i) {
+		swap(matrix[i][a], matrix[i][b]);
+	}
+}
+
+void Swap_Rows_Small(int p, int a, int b, int matrix[9][9]) {
+	int i;
+	Transposition(matrix);
+	if (a == b) {
+		++b;
+	}
+	p %= 3;
+	a %= 3;
+	b %= 3;
+	a += p * 3;
+	b += p * 3;
+
+	for (i = 0; i < 9; ++i) {
+		swap(matrix[i][a], matrix[i][b]);
+	}
+	Transposition(matrix);
+}
+
+void Swap_Colums_Area(int a, int b, int matrix[9][9]) {
+	int i, j;
+	if (a == b) {
+		++b;
+	}
+	a %= 3;
+	b %= 3;
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 3; ++j) {
+			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);
+		}
+	}
+}
+
+void Swap_Rows_Area(int a, int b, int matrix[9][9]) {
+	int i, j;
+	Transposition(matrix);
+	if (a == b) {
+		++b;
+	}
+	a %= 3;
+	b %= 3;
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 3; ++j) {
+			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);
+		}
+	}
+	Transposition(matrix);
+}
+
+void Erase(int a, int  b, int matrix[9][9]) {
+	a %= 9;
+	b %= 9;
+	matrix[a][b] = 0;
+}
+
+int Accidentally(int matrix[9][9]) {
+	int i, j, k;
+	while (1) {
+		k = rand() % 81;
+		j = k % 9;
+		i = k / 9;
+		if (matrix[i][j] != 0) {
+			matrix[i][j] = 0;
+			return k;
+		}
+	}
+}
+
+string Calc(string s, int matrix[9][9], int matrix2[9][9]) {
+	int i, j, e, x, y, k, poz1, poz2;
+	string z;
+	bool f1;
+
+	for (i = 0; i < 9; ++i)
+		for (j = 0; j < 9; ++j)
+			matrix2[i][j] = matrix[i][j];
+
+	for (i = 0; i < 9; ++i)
+		for (j = 0; j < 9; ++j)
+			matrix2[i][j] = matrix[i][j];
+
+	for (i = 0; i < s.size() / 3; ++i)
+		matrix2[s[i * 3] - '0'][s[i * 3 + 1] - '0'] = s[i * 3 + 2] - '0';
+
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			if (matrix2[i][j] == 0) {
+				for (e = 9; e > 0; --e) {
+					f1 = true;
+					for (k = 0; k < 9; ++k) {
+						if (matrix2[i][k] == e || matrix2[k][j] == e) {
+							f1 = false;
+							break;
+						}
+					}
+					poz1 = i / 3;
+					poz2 = j / 3;
+					for (y = 0; y < 3; ++y) {
+						for (x = 0; x < 3; ++x) {
+							if ((poz1 * 3 + y) != i && (poz2 * 3 + x) != j) {
+								if (matrix2[poz1 * 3 + y][poz2 * 3 + x] == e) {
+									f1 = false;
+								}
+							}
+						}
+					}
+					if (f1) {
+						z = s;
+						z.push_back(i + 48);
+						z.push_back(j + 48);
+						z.push_back(e + 48);
+						z = Calc(z, matrix, matrix2);
+						if (z != "-1") {
+							return z;
+						}
+					}
+				}
+				return "-1";
+			}
+		}
+	}
+	return s;
+}
+
+string Calc2(string s, int matrix[9][9], int matrix2[9][9]) {
+	int i, j, e, x, y, k, poz1, poz2;
+	string z;
+	bool  f1;
+	for (i = 0; i < 9; ++i)
+		for (j = 0; j < 9; ++j)
+			matrix2[i][j] = matrix[i][j];
+
+	for (i = 0; i < 9; ++i)
+		for (j = 0; j < 9; ++j)
+			matrix2[i][j] = matrix[i][j];
+
+	for (i = 0; i < s.size() / 3; ++i)
+		matrix2[s[i * 3] - '0'][s[i * 3 + 1] - '0'] = s[i * 3 + 2] - '0';
+
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			if (matrix2[i][j] == 0) {
+				for (e = 1; e <= 9; ++e) {
+					f1 = true;
+					for (k = 0; k < 9; ++k) {
+						if (matrix2[i][k] == e || matrix2[k][j] == e) {
+							f1 = false;
+							break;
+						}
+					}
+					poz1 = i / 3;
+					poz2 = j / 3;
+					for (y = 0; y < 3; ++y) {
+						for (x = 0; x < 3; ++x) {
+							if ((poz1 * 3 + y) != i && (poz2 * 3 + x) != j) {
+								if (matrix2[poz1 * 3 + y][poz2 * 3 + x] == e) {
+									f1 = false;
+								}
+							}
+						}
+					}
+					if (f1) {
+						z = s;
+						z.push_back(i + 48);
+						z.push_back(j + 48);
+						z.push_back(e + 48);
+						z = Calc2(z, matrix, matrix2);
+						if (z != "-1") {
+							return z;
+						}
+					}
+				}
+				return "-1";
+			}
+		}
+	}
+	return s;
+}
+
+int Get(int buf[9][9], int m[9][9]) {
+	int i, j;
+	char a;
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			cin >> a;
+			if (a == '=') {
+				cout << '\n';
+				Printf(m);
+				return 2;
+			}
+			if (a >= 48 && a <= 57) {
+				buf[i][j] = a - '0';
+			}
+			else {
+				cout << '\n';
+				cout << "ERROR" << '\n';
+				return 0;
+			}
+		}
+	}
+	cout << '\n';
+	return 1;
+}
+
+int main() {
+	srand(time(NULL));
+	int m[9][9];
+	int matrix[9][9];
+	int matrix2[9][9];
+	int buf[9][9];
+	int a, b, c, d, i, j, p, complexity, p2;
+	string s, z;
+
+	Generation(matrix);
+
+	// запутывание
+	for (i = 100; i < 200; ++i) {
+		d = rand() % 4;
+		a = rand();
+		b = rand();
+		c = rand();
+		if (d == 0)
+			Swap_Colums_Small(a, b, c, matrix);
+		if (d == 1)
+			Swap_Rows_Small(a, b, c, matrix);
+		if (d == 2)
+			Swap_Colums_Area(a, b, matrix);
+		if (d == 3)
+			Swap_Rows_Area(a, b, matrix);
+	}
+	//конец
+
+	for (i = 0; i < 9; ++i) {
+		for (j = 0; j < 9; ++j) {
+			m[i][j] = matrix[i][j];
+		}
+	}
+	cout << "Enter the Sudoku difficulty: Easy, Medium, Hard" << "\n\n";
+	while (1) {
+		cin >> s;
+		cout << '\n';
+		if (s == "Easy") {
+			complexity = 50;
+			break;
+		}
+		if (s == "Medium") {
+			complexity = 120;
+			break;
+		}
+		if (s == "Hard") {
+			complexity = 1000;
+			break;
+		}
+		cout << "ERROR" << '\n';
+	}
+	for (i = 0; i < complexity; ++i) {
+		p = Accidentally(matrix);
+		s = Calc("", matrix, matrix2);
+		z = Calc2("", matrix, matrix2);
+		if (s != z || s == "-1" || z == "-1") {
+			a = p % 9;
+			b = p / 9;
+			matrix[b][a] = m[b][a];
+		}
+	}
+
+	Printf(matrix);
+	cout << '\n';
+	cout << "Enter a variant of the Sudoku solution as the matrix as in the example above or get the solution with the symbol = " << '\n';
+	
+	bool f2 = false;
+	while (1) {
+		cout << '\n';
+		p2 = Get(buf, m);
+		if (p2 == 2) {
+			break;
+		}
+		if (p2 == 0) {
+			continue;
+		}
+		f2 = true;
+
+		if (p2 == 1) {
+			for (i = 0; i < 9; ++i) {
+				for (j = 0; j < 9; ++j) {
+					if (m[i][j] != buf[i][j]) {
+						f2 = false;
+					}
+				}
+			}
+		}
+		if (f2) {
+			cout << "YOU ARE WINNER!";
+			return 0;
+		}
+		else {
+			for (i = 0; i < 9; ++i) {
+				for (j = 0; j < 9; ++j) {
+					if (m[i][j] != buf[i][j]) {
+						if (buf[i][j] != 0) {
+							cout << '-' << ' ';
+						}
+						else {
+							cout << '0' << ' ';
+						}
+					}
+					else {
+						cout << m[i][j] << ' ';
+					}
+				}
+				cout << '\n';
+			}
+			cout << "\nEnter a variant of the Sudoku solution as the matrix as in the example above or get the solution with the symbol = \n";
+		}
+	}
+	return 0;
+}
