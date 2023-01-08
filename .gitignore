@@ -53,3 +53,7 @@ dkms.conf
 
 # Mac bin file
 .DS_Store
+
+.vscode
+
+*.txt
