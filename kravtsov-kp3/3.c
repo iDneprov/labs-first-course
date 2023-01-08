@@ -5,7 +5,6 @@
 #define STEP 0.005l 
 #define ABS(a) (a < 0) ? -(a) : a 
 
-
 long double MachineEpsilon() { 
     long double e = 1.0l; 
     while (1.0l + e * 0.5l > 1.0l) { 
